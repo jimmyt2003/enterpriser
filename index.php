@@ -2,7 +2,7 @@
 
 /*
  *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT test
+ * APPLICATION ENVIRONMENT test test 2
  *---------------------------------------------------------------
  *
  * You can load different configurations depending on your
