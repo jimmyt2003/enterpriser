@@ -1,10 +1,10 @@
 <?php
 
-class User extends CI_Controller {
+class Login extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model("user_model");
+		//$this->load->model("user_model");
 		$this->load->helper("url");
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -64,7 +64,6 @@ class User extends CI_Controller {
 			$this->load->view('footer');
 		}
 
-
 	}
 
 	public function home()
@@ -101,18 +100,16 @@ class User extends CI_Controller {
 
 	public function add_user()
 	{	
-		
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		$this->form_validation->set_rules('name', 'First Name', 'required|xss_clean|max_length[30]');
+		$this->form_validation->set_rules('firstname', 'First Name', 'required|xss_clean|max_length[30]');
+		$this->form_validation->set_rules('surname', 'First Name', 'required|xss_clean|max_length[30]');
 		$this->form_validation->set_rules('email', 'Email Address', 'required|xss_clean|callback_email_check|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required|max_length[20]|matches[passwordconfirm]');
 		$this->form_validation->set_rules('passwordconfirm', 'Confirm Password', 'required');
 
 		if($this->form_validation->run() == TRUE)
 		{
-		
 			$this->user_model->insert_user();
-			//echo "right";
 			redirect('/user/thankyou/', 'refresh');
 		}else{
 			//echo "wrong";
@@ -120,7 +117,6 @@ class User extends CI_Controller {
 			$this->load->view("register");
 			$this->load->view("footer");
 		}
-
 
 	}
 

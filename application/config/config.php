@@ -14,7 +14,13 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://dev.enterpriser.co.uk';
+$url = $_SERVER['REQUEST_URI'];
+if (strpos($url,'~james') !== false)
+{
+	$config['base_url']	= 'http://localhost/~james/enterpriser/';
+}else{
+	$config['base_url']	= 'http://dev.enterpriser.co.uk/';
+}
 
 /*
 |--------------------------------------------------------------------------
