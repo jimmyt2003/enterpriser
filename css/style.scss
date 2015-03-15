@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Muli:300,400);
 
 $brand-blue: #345888;
+$off-white: #f2f2f2;
 
 body{
 	padding-top:50px;
@@ -56,8 +57,12 @@ h1, h2, h3, h4{
 		cursor: pointer;
 	}
 
-	h1{
-		margin: 0px 0px 10px 0px;
+	h2{
+		margin: -22px 0px 10px 0px;
+
+		small{
+			color: $off-white;
+		}
 	}
 }
 

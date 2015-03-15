@@ -41,14 +41,14 @@
     <!-- Register -->
     <div class="jumbotron splash-register" style="background-image:url('<?php echo base_url(); ?>img/registersplashbg.jpg');">
     	<span class="close-btn glyphicon glyphicon-remove"></span>
-    	<h1>Register <small>It's Free!</small></h4>
+    	<h2>Register <small>It's Free!</small></h2>
     	<div class="row text-left">
     		<?php echo form_open('login/add_user'); ?>
     		<div class="col-lg-4 col-xs-10 col-sm-8 col-lg-offset-4 col-sm-offset-2 col-xs-offset-1">
 	    		<div class="form-group">
-	    			<label for="exampleInputEmail1">Name</label>
 	    				<div class="row">
 			    			<div class="col-xs-6">
+			    			<label for="exampleInputEmail1">First Name</label>
 						    <?php
 							    $data = array(
 					              'name'        => 'firstname',
@@ -64,6 +64,7 @@
 							?>
 							</div>
 							<div class="col-xs-6">
+							<label for="exampleInputEmail1">Surname</label>
 						    <?php
 							    $data = array(
 					              'name'        => 'surname',
@@ -81,16 +82,16 @@
 						</div>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Username</label>
+					<label for="email">Email Address</label>
 				    <?php
 					    $data = array(
-			              'name'        => 'name',
-			              'id'          => 'name',
-			              'value'       => set_value('name'),
+			              'name'        => 'email',
+			              'id'          => 'email',
+			              'value'       => set_value('email'),
 			              'maxlength'   => '100',
 			              'class'        => 'form-control',
 			              'required'	=> 'required',
-			              'placeholder' => 'Username'
+			              'placeholder' => 'Email Address'
 			            );
 
 						echo form_input($data);
@@ -138,19 +139,19 @@
     	<span class="close-btn glyphicon glyphicon-remove"></span>
     	<h1>Login</h1>
     	<div class="row text-left">
-    		<?php echo form_open('user/add_user'); ?>
+    		<?php echo form_open('login/check_user'); ?>
     		<div class="col-lg-4 col-xs-10 col-sm-8 col-lg-offset-4 col-sm-offset-2 col-xs-offset-1">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Username</label>
+					<label for="exampleInputEmail1">Email Address</label>
 				    <?php
 					    $data = array(
-			              'name'        => 'name',
-			              'id'          => 'name',
-			              'value'       => set_value('name'),
+			              'name'        => 'email',
+			              'id'          => 'email',
+			              'value'       => set_value('email'),
 			              'maxlength'   => '100',
 			              'class'        => 'form-control',
 			              'required'	=> 'required',
-			              'placeholder' => 'Username'
+			              'placeholder' => 'Email'
 			            );
 
 						echo form_input($data);

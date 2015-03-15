@@ -4,7 +4,7 @@ class Login extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		//$this->load->model("user_model");
+		$this->load->model("login_model");
 		$this->load->helper("url");
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -30,7 +30,7 @@ class Login extends CI_Controller {
 
 	public function edit_profile()
 	{
-		$data['destinations']=$this->user_model->get_destinations();
+		$data['destinations']=$this->login_model->get_destinations();
 		$this->load->view('user/header', $data);
 		$this->load->view("user/edit_profile");
 		$this->load->view('footer');
@@ -38,7 +38,7 @@ class Login extends CI_Controller {
 
 	public function first_edit_profile()
 	{
-		$data['destinations']=$this->user_model->get_destinations();
+		$data['destinations']=$this->login_model->get_destinations();
 		$this->load->view('user/header', $data);
 		$this->load->view("user/first_edit_profile");
 		$this->load->view('footer');
@@ -53,12 +53,12 @@ class Login extends CI_Controller {
 		if($this->form_validation->run() == TRUE)
 		{
 		
-			$this->user_model->insert_user_info();
+			$this->login_model->insert_user_info();
 			//echo "right";
 			redirect('/user/home/', 'refresh');
 		}else{
 			//echo "wrong";
-			$data['destinations']=$this->user_model->get_destinations();
+			$data['destinations']=$this->login_model->get_destinations();
 			$this->load->view('user/header', $data);
 			$this->load->view("user/first_edit_profile");
 			$this->load->view('footer');
@@ -70,15 +70,15 @@ class Login extends CI_Controller {
 	{
 		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
 
-		$data['destinations']=$this->user_model->get_destinations();
+		$data['destinations']=$this->login_model->get_destinations();
 		$this->load->view('user/header', $data);
-		if($this->user_model->firstlogin())
+		if($this->login_model->firstlogin())
 		{
 			$this->load->view('user/profilepic');
 		}else{
-			$data['holidays']=$this->user_model->myholidays();
-			$data['profile']=$this->user_model->profile();
-			//$data['holidays']=$this->user_model->myholidays();
+			$data['holidays']=$this->login_model->myholidays();
+			$data['profile']=$this->login_model->profile();
+			//$data['holidays']=$this->login_model->myholidays();
 			$this->load->view("user/home", $data);
 		}
 		$this->load->view('footer');
@@ -109,7 +109,7 @@ class Login extends CI_Controller {
 
 		if($this->form_validation->run() == TRUE)
 		{
-			$this->user_model->insert_user();
+			$this->login_model->insert_user();
 			redirect('/user/thankyou/', 'refresh');
 		}else{
 			//echo "wrong";
@@ -123,47 +123,35 @@ class Login extends CI_Controller {
 	public function check_user()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		//$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_validated');
+		//$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_validated');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() == TRUE)
 		{
 			
-
-			if($this->user_model->check_user())
+			if($this->login_model->check_user())
 			{
-				//$data['profile']=$this->user_model->profile();
-				$data['destinations']=$this->user_model->get_destinations();
-				$this->load->view("user/header", $data);
-
-					if($this->user_model->firstloginprofile())
-					{
-						redirect('user/first_edit_profile', 'location');
-			 		}
-
-			 		if($this->user_model->firstlogin())
-					{
-						$this->load->view('user/profilepic');
-					}else{
-						$data['holidays']=$this->user_model->myholidays();
-						$data['profile']=$this->user_model->profile();
-						//$data['holidays']=$this->user_model->myholidays();
-						$this->load->view("user/home", $data);
-					}
-			 	$this->load->view("footer");
+			 	// 	if($this->login_model->firstlogin())
+					// {
+					// 	$this->load->view('user/profilepic');
+					// }else{
+					//	load home
+					//}
+			 	echo "logged in";
 			}else
 			{
-				$data['wrongpassword']="wrong";
+				//$data['wrongpassword']="wrong";
 				$this->load->view("header");
-				$this->load->view("login", $data);
-				$this->load->view("footer");
+				// $this->load->view("login", $data);
+				// $this->load->view("footer");
+				echo "wrong password";
 			}
 
 		}else{
 			$this->load->view("header");
-			$this->load->view("login");
-			$this->load->view("footer");
+			// $this->load->view("login");
+			// $this->load->view("footer");
+			echo "failed validation or email not validated";
 		}
 
 
@@ -171,7 +159,7 @@ class Login extends CI_Controller {
 
 	public function approve($rand)
 	{
-		if($this->user_model->approve_email($rand))
+		if($this->login_model->approve_email($rand))
 		{
 				$data['rightvalidation']="right";
 				$this->load->view("header");
@@ -188,7 +176,7 @@ class Login extends CI_Controller {
 
 	public function email_validated($email)
 	{
-		if ($this->user_model->email_validated($email))
+		if ($this->login_model->email_validated($email))
 		{
 			$this->form_validation->set_message('email_validated', 'This %s has not been validated. Please check your e-mails.');
 			return FALSE;
@@ -201,7 +189,7 @@ class Login extends CI_Controller {
 
 	public function email_check($email)
 	{
-		if ($this->user_model->unique_email($email))
+		if ($this->login_model->unique_email($email))
 		{
 			$this->form_validation->set_message('email_check', 'This %s has already been taken.');
 			return FALSE;
@@ -223,12 +211,12 @@ class Login extends CI_Controller {
 	{
 		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
 
-		$data['destinations']=$this->user_model->get_destinations();
+		$data['destinations']=$this->login_model->get_destinations();
 		$this->load->view("user/header", $data);
 
-		if($this->user_model->holidayno()==0)
+		if($this->login_model->holidayno()==0)
 			{
-				$data['destinations']=$this->user_model->get_destinations();
+				$data['destinations']=$this->login_model->get_destinations();
 				$this->load->view("user/add_holiday", $data);
 			}
 		$this->load->view("footer");
@@ -247,12 +235,12 @@ class Login extends CI_Controller {
 		if($this->form_validation->run() == TRUE)
 		{
 		
-			$this->user_model->insert_holiday();
+			$this->login_model->insert_holiday();
 			//echo "right";
 			redirect('/holidays/latest/', 'refresh');
 		}else{
 			//echo "wrong";
-			$data['destinations']=$this->user_model->get_destinations();
+			$data['destinations']=$this->login_model->get_destinations();
 			$this->load->view("user/header", $data);
 			$this->load->view("user/add_holiday", $data);
 			$this->load->view("footer");
@@ -264,11 +252,11 @@ class Login extends CI_Controller {
 	{
 		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
 		//$this->form_validation->set_rules('tags', 'Tags', 'trim|required|min_length[3]|max_length[50]|xss_clean');
-		$this->user_model->do_upload();
+		$this->login_model->do_upload();
 		redirect('/user/home/', 'refresh');
 /*
 		if($this->form_validation->run() == TRUE){
-			$this->user_model->do_upload();
+			$this->login_model->do_upload();
 		
 		 	redirect('/user/home/', 'refresh');
 
@@ -293,8 +281,8 @@ class Login extends CI_Controller {
 	public function myholidays()
 	{
 		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
-		$data['holidays']=$this->user_model->myholidays();
-		$data['destinations']=$this->user_model->get_destinations(); $data['destinations']=$this->user_model->get_destinations(); $this->load->view('user/header', $data);
+		$data['holidays']=$this->login_model->myholidays();
+		$data['destinations']=$this->login_model->get_destinations(); $data['destinations']=$this->login_model->get_destinations(); $this->load->view('user/header', $data);
 		$this->load->view("holidays", $data);
 		$this->load->view('footer');
 	}
