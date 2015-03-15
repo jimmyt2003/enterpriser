@@ -7,3 +7,4 @@
 - Create registration and login animations
 - add forms
 - set up controller to check form validation then submit registration data to database via model
+- code the login to check if the email and password match and if so set a session
