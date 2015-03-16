@@ -16,3 +16,4 @@
 - added thank you page after sign up
 - added email validation feature which sends an email on registration with a link. Once clicked this sets a verified maker in the database and the user can login
 - Did some mobile tweaks
+- Created code in the sidebar which detects what controller and method the user is currenrently visiting and changes the content
