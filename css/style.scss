@@ -1,0 +1,131 @@
+@import url(http://fonts.googleapis.com/css?family=Muli:300,400);
+
+$brand-blue: #345888;
+$off-white: #f2f2f2;
+
+body{
+	padding-top:50px;
+	background-color: #f2f2f2;
+}
+.brand-blue{
+	color: $brand-blue !important;
+}
+.white{
+	color: white;
+}
+h1, h2, h3, h4{
+	font-family: 'Muli';
+}
+
+.margin-top-bottom{
+	margin: 20px 0;
+}
+
+.strapline{
+	font-family: 'Muli', serif;
+	color: white;
+	margin-bottom: 40px;
+	opacity: 0;
+	transition: opacity 1.75s ease-in-out;
+   -moz-transition: opacity 1.75s ease-in-out;
+   -webkit-transition: opacity 1.75s ease-in-out;
+}
+
+.full-opacity{
+	opacity: 1;
+}
+
+.splash-register, .splash-login{
+	height: 500px;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	z-index: 1000;
+	color: white;
+	display: none;
+	background-repeat:no-repeat;
+    background-size:cover;
+    margin: 0;
+
+    .close-btn{
+		float: right;
+		margin-right: 50px;
+		font-size: 30px;
+		cursor: pointer;
+	}
+
+	h2{
+		margin: -22px 0px 10px 0px;
+
+		small{
+			color: $off-white;
+		}
+	}
+}
+
+.full-screen-splash{
+	height: 500px;
+	padding: 100px 0px 0px 150px;
+	color: white;
+    background-repeat:no-repeat;
+    background-size:cover;
+    margin: 0;
+}
+.splash-info{
+	width: 100%;
+	background-color: $brand-blue;
+	margin: 0;
+	padding: 0;
+	color: white;
+	h2{
+		padding: 20px 0px 10px 0px;
+	}
+	.row{
+		margin-bottom: 20px;
+	}
+}
+.navbar-brand{
+	font-family: 'Muli';
+	color: $brand-blue;
+}
+
+.form-control{
+	margin-bottom: 15px;
+}
+
+.splash-login{
+	h1{
+		margin-bottom: 30px;
+	}
+}
+
+/* Layout */
+
+.sidebar{
+	background-color: $brand-blue;
+	border-right:solid 1px $off-white;
+	color: $off-white;
+	padding: 18px 15px;
+	font-weight: 100;
+}
+
+.content-area{
+	background-color: white;
+	padding: 0px 15px;
+
+	h1, h2{
+		color: $brand-blue;
+	}
+}
+
+/*media queries*/
+
+@media screen and (max-width: 700px) {
+    .full-screen-splash{
+    	padding: 25px 10px;
+    	height: 300px;
+    }
+}
