@@ -31,7 +31,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if($this->session->userdata('user_id')){?>
-            <li><a href="<?php echo base_url(); ?>index.php/user/profile"><?php echo $this->session->userdata('name'); ?></span></a></li>
+            <li><a href="<?php echo base_url(); ?>index.php/user/profile"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?></span></a></li>
             <li><a href="<?php echo base_url(); ?>index.php/login/logout">Logout</span></a></li>
             <?php }else{ ?>
             <li><a href="<?php echo base_url(); ?>index.php/login/login">Login</span></a></li>
