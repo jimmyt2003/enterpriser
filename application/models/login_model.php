@@ -143,9 +143,9 @@ class Login_model extends CI_Model {
 
 								$newdata = array(
 									'user_id'  => $user_id,
-				                   'email'     => $email,
-				                   'name' => $name,
-				                   'logged_in' => TRUE
+				                   	'email'     => $email,
+				                   	'name' => $name,
+				                   	'logged_in' => TRUE
 				               );
 							}	
 					$this->session->set_userdata($newdata);	

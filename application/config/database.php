@@ -55,7 +55,7 @@ if (strpos($url,'~james') !== false)
 	$db['default']['hostname'] = 'mysql:host=localhost';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '';
-	$db['default']['database'] = 'fmots';
+	$db['default']['database'] = 'stojamy2_ent';
 	$db['default']['dbdriver'] = 'pdo';
 	$db['default']['dbprefix'] = '';
 	$db['default']['pconnect'] = FALSE;

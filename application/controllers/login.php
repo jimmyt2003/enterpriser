@@ -15,9 +15,18 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+		if($this->session->userdata('user_id')){ redirect('user', 'location');}
+		$data['loginerror']="no error";
+		$this->load->view('header');
+		$this->load->view('sidebar');
+		$this->load->view("login", $data);
+		$this->load->view('footer');
+	}
+
+	public function template()
+	{
+		$this->load->view('header');
 		$this->load->view('template');
-		//$this->load->view("leaderboard", $data);
-		//$this->load->view('footer');
 	}
 
 
@@ -93,8 +102,10 @@ class Login extends CI_Controller {
 
 	public function login()
 	{
+		$data['loginerror']="no error";
 		$this->load->view('header');
-		$this->load->view("login");
+		$this->load->view('sidebar');
+		$this->load->view("login", $data);
 		$this->load->view('footer');
 	}
 
@@ -123,7 +134,7 @@ class Login extends CI_Controller {
 	public function check_user()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		//$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_validated');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_email_validated');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() == TRUE)
@@ -131,27 +142,22 @@ class Login extends CI_Controller {
 			
 			if($this->login_model->check_user())
 			{
-			 	// 	if($this->login_model->firstlogin())
-					// {
-					// 	$this->load->view('user/profilepic');
-					// }else{
-					//	load home
-					//}
-			 	echo "logged in";
+			 	redirect('/user/', 'refresh');
 			}else
 			{
-				//$data['wrongpassword']="wrong";
+				$data['loginerror']="wrong";
 				$this->load->view("header");
-				// $this->load->view("login", $data);
-				// $this->load->view("footer");
-				echo "wrong password";
+				$this->load->view("sidebar");
+				$this->load->view("login", $data);
+				$this->load->view("footer");
 			}
 
 		}else{
+			$data['loginerror']="validation";
 			$this->load->view("header");
-			// $this->load->view("login");
-			// $this->load->view("footer");
-			echo "failed validation or email not validated";
+			$this->load->view("sidebar");
+			$this->load->view("login");
+			$this->load->view("footer");
 		}
 
 
