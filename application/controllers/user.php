@@ -15,12 +15,34 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+		$data['businesses']=$this->user_model->mybusinesses();
 		$this->load->view('header');
 		$this->load->view('sidebar');
-		$this->load->view("user/controlpanel");
+		$this->load->view("user/controlpanel", $data);
 		$this->load->view('footer');
 	}
 
+	public function update_profilepic()
+	{
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/profilepic");
+			$this->load->view("footer");	
+	}
+
+	public function upload_profilepic()
+	{
+		$this->user_model->do_upload();
+		redirect('/user/', 'refresh');
+	}
+
+	public function add_business()
+	{
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/addbusiness");
+			$this->load->view("footer");	
+	}
 	
 
 

@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('user_id')){ redirect('user', 'location');}
+		//if($this->session->userdata('user_id')){ redirect('user/', 'location');}
 		$data['loginerror']="no error";
 		$this->load->view('header');
 		$this->load->view('sidebar');
@@ -25,6 +25,7 @@ class Login extends CI_Controller {
 
 	public function template()
 	{
+		if($this->session->userdata('user_id')){ redirect('user/', 'location');}
 		$this->load->view('header');
 		$this->load->view('template');
 	}
