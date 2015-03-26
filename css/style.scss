@@ -2,6 +2,7 @@
 
 $brand-blue: #345888;
 $off-white: #f2f2f2;
+$grey: #eee;
 
 body{
 	padding-top:50px;
@@ -13,6 +14,11 @@ body{
 .white{
 	color: white;
 }
+
+.textshadow{
+	text-shadow: 1px 1px 8px rgba(150, 150, 150, 0.5);
+}
+
 h1, h2, h3, h4{
 	font-family: 'Muli';
 }
@@ -26,9 +32,9 @@ h1, h2, h3, h4{
 	color: white;
 	margin-bottom: 40px;
 	opacity: 0;
-	transition: opacity 1.75s ease-in-out;
-   -moz-transition: opacity 1.75s ease-in-out;
-   -webkit-transition: opacity 1.75s ease-in-out;
+	transition: opacity 2.75s ease-in-out;
+   -moz-transition: opacity 2.75s ease-in-out;
+   -webkit-transition: opacity 2.75s ease-in-out;
 }
 
 .full-opacity{
@@ -102,6 +108,16 @@ h1, h2, h3, h4{
 	}
 }
 
+.register-link, .login-link{
+	color: $off-white;
+	margin-left: 15px;
+	text-decoration: none;
+}
+
+.register-link:hover, .login-link:hover{
+	color: white;
+}
+
 /* Layout */
 
 .sidebar{
@@ -112,6 +128,35 @@ h1, h2, h3, h4{
 	font-weight: 100;
 }
 
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -15px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -15px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: lighten($brand-blue, 10%);
+  color: $off-white;
+  transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -webkit-transition: all 0.3s ease-in-out;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  /*background-color: #428bca;*/
+  background-color: lighten($brand-blue, 20%);
+}
+
+.nav-sidebar > li > a:hover {
+	color: $brand-blue;
+}
+
+
+
 .content-area{
 	background-color: white;
 	padding: 0px 15px;
@@ -121,11 +166,27 @@ h1, h2, h3, h4{
 	}
 }
 
+.nomargin{
+	margin:0;
+}
+
+.whitebg{
+	background-color: white !important;
+}
+
+.offwhitebg{
+	background-color: $off-white;
+}
+.bluebg{
+	background-color: $brand-blue;
+}
+
 /*media queries*/
 
 @media screen and (max-width: 700px) {
     .full-screen-splash{
     	padding: 25px 10px;
-    	height: 300px;
+    	height: 340px;
+    	border-bottom: 2px solid $off-white;
     }
 }

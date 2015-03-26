@@ -2,6 +2,12 @@
 <h1>Login</h1>
 <div class="row">
 	<div class="col-xs-12 col-sm-10 col-md-offset-1">
+<?php if(isset($wrongvalidation)){ ?>
+	<div class="alert alert-danger">Email validation failed</div>
+<?php } ?>
+<?php if(isset($rightvalidation)){ ?>
+	<div class="alert alert-success">Email validated please login</div>
+<?php } ?>
 <?php echo validation_errors(); ?>
 <?php if(!isset($loginerror)){$loginerror="no error";}?>
 <?php if($loginerror=="wrong"){ ?>

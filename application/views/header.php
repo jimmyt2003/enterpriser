@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Enterpriser - Entrepreneur Community</title>
 
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
@@ -34,6 +36,7 @@
             <li><a href="<?php echo base_url(); ?>index.php/user/profile"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?></span></a></li>
             <li><a href="<?php echo base_url(); ?>index.php/login/logout">Logout</span></a></li>
             <?php }else{ ?>
+            <li><a href="<?php echo base_url(); ?>index.php/login/register">Register</span></a></li>
             <li><a href="<?php echo base_url(); ?>index.php/login/login">Login</span></a></li>
             <?php } ?>
           </ul>

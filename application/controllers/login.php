@@ -33,6 +33,7 @@ class Login extends CI_Controller {
 	public function register()
 	{
 		$this->load->view('header');
+		$this->load->view("sidebar");
 		$this->load->view("register");
 		$this->load->view('footer');
 	}
@@ -95,8 +96,11 @@ class Login extends CI_Controller {
 
 	public function thankyou()
 	{
+		$data['loginerror']="no error";
 		$this->load->view('header');
 		$this->load->view("thankyou");
+		$this->load->view("sidebar");
+		$this->load->view("login", $data);
 		$this->load->view('footer');
 	}
 
@@ -121,10 +125,11 @@ class Login extends CI_Controller {
 		if($this->form_validation->run() == TRUE)
 		{
 			$this->login_model->insert_user();
-			redirect('/user/thankyou/', 'refresh');
+			redirect('/login/thankyou/', 'refresh');
 		}else{
 			//echo "wrong";
 			$this->load->view("header");
+			$this->load->view("sidebar");
 			$this->load->view("register");
 			$this->load->view("footer");
 		}
@@ -168,13 +173,17 @@ class Login extends CI_Controller {
 		if($this->login_model->approve_email($rand))
 		{
 				$data['rightvalidation']="right";
+				$data['loginerror']="right";
 				$this->load->view("header");
+				$this->load->view("sidebar");
 				$this->load->view("login", $data);
 				$this->load->view("footer");
 		}else
 		{
 				$data['wrongvalidation']="wrong";
+				$data['loginerror']="right";
 				$this->load->view("header");
+				$this->load->view("sidebar");
 				$this->load->view("login", $data);
 				$this->load->view("footer");
 		}

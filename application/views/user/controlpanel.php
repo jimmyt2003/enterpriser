@@ -3,7 +3,8 @@
 
 	<div class="row">
     	<div class="col-xs-12 col-md-6">
-    		Options here
+    		<img src="http://placehold.it/200x200" class="img-responsive img-thumb editprofilepic"/>
+    		<span class="editprofilepictext">Edit Profile Picture</span>
     	</div>
 
     	<div class="col-xs-12 col-md-6">

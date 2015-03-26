@@ -48,12 +48,16 @@ class Login_model extends CI_Model {
 
 			$this->email->initialize($config);
 
-			$this->email->from('noreply@dev.enterpriser.com', 'Enterpriser');
+			$this->email->from('noreply@dev.enterpriser.co.uk', 'Enterpriser');
 			$this->email->to($email); 
 
 			$this->email->subject('Enterpriser Email Verification');
-			$message="<h2>test</h2>
-			<p><a href='http://www.dev.enterpriser.co.uk/login/approve/".$randstring."'>Approve</a></p>";
+			$message="<h2>Thank you for joining Enterpriser</h2>
+			<p>To complete your registration please click the link below to verify your account and login.</p>
+			<p><strong><a href='http://dev.enterpriser.co.uk/index.php/login/approve/".$randstring."'>Approve</a></strong></p>
+			<p>Alternatively copy and paste the following link into your address bar: http://dev.enterpriser.co.uk/index.php/login/approve/".$randstring."</p>
+			<br>
+			<p>Thanks,<br>Enterpriser.co.uk</p>";
 			$this->email->message($message);	
 
 			$this->email->send();
@@ -98,7 +102,7 @@ class Login_model extends CI_Model {
 		
 		if($stmt->rowCount()>"0")
 		{
-			$sql = "UPDATE users SET validated=1 WHERE rand = :randomval";
+			$sql = "UPDATE users SET verified=1 WHERE rand = :randomval";
 			$stmt = $this->db->conn_id->prepare($sql);
 			$stmt->bindParam(':randomval', $rand);
 			$stmt->execute();

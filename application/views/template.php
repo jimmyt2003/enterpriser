@@ -92,7 +92,7 @@
 					?>
 				</div>
 
-				<button type="submit" class="btn btn-default">Register</button>
+				<button type="submit" class="btn btn-default">Register</button> <a href="#" class="login-link">I Have An Account, Login</a>
 				</form>
 			</div>
 		</div>
@@ -136,7 +136,7 @@
 					?>
 				</div>
 
-				<button type="submit" class="btn btn-default">Login</button>
+				<button type="submit" class="btn btn-default">Login</button> <a href="#" class="register-link">Not Signed Up? Register Here</a>
 				</form>
 			</div>
 		</div>
