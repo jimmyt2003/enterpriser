@@ -5,10 +5,12 @@
 			<h2>Control Panel</h2>
     		<div class="row">
     			<div class="col-xs-12">
-    				<img src="<?php echo base_url(); ?>uploads/thumbs/<?php echo $this->session->userdata('user_id'); ?>.jpg"/>
+                    <?php foreach($profile as $profile_item){ ?> 
+    				    <img src="<?php echo base_url(); ?>uploads/thumbs/<?php if($profile_item['filename']==""){ echo "noimg.jpg";}else{echo $profile_item['filename']; } ?>"/>
+                    <?php } ?>
     			</div>
     			<div class="col-xs-12">
-    				<a href="<?php echo base_url(); ?>index.php/user/update_profilepic" class="btn btn-primary btn-xs clear-fix"><span class="glyphicon glyphicon-picture"></span> Edit Profile Picture</a>
+    				<a href="<?php echo base_url(); ?>index.php/user/update_profilepic" class="btn btn-primary btn-xs profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Profile Picture</a>
     			</div>
     		</div>
     	</div>

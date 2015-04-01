@@ -3,9 +3,9 @@
 <?php if($this->uri->segment(1)=="user"){ ?>
 	<h4><?php echo $this->session->userdata('name'); ?></h4>
 	<ul class="nav nav-sidebar">
-        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Control Panel <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="<?php echo base_url(); ?>index.php/user/"><span class="glyphicon glyphicon-home"></span> Control Panel <span class="sr-only">(current)</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Messages <span class="badge">42</span></a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Your Businesses <span class="badge">2</span></a></li>
+        <li><a href="<?php echo base_url(); ?>index.php/user/"><span class="glyphicon glyphicon-briefcase"></span> Your Businesses <span class="badge">2</span></a></li>
         <li><a href="#"><span class="glyphicon glyphicon-transfer"></span> Services</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-print"></span> Office Space</a></li>
     </ul>

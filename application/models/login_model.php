@@ -178,89 +178,6 @@ class Login_model extends CI_Model {
 
 	}
 
-	public function holidayno()
-	{
-
-		$id = $this->session->userdata('user_id');
-		$sql = "SELECT * FROM holidays WHERE user_id = :id";
-		$stmt = $this->db->conn_id->prepare($sql);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-		$hols=$stmt->rowCount();
-		return $hols;
-	}
-
-	public function firstlogin()
-	{
-
-		$id = $this->session->userdata('user_id');
-		$sql = "SELECT * FROM users WHERE user_id = :id";
-		$stmt = $this->db->conn_id->prepare($sql);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-		foreach($stmt as $row)
-		{
-			$firsttime = $row['firsttime'];
-		}
-		if($firsttime==1)
-		{
-			return True;
-		}else{
-			return False;
-		}
-	}
-
-	public function firstloginprofile()
-	{
-
-		$id = $this->session->userdata('user_id');
-		$sql = "SELECT * FROM users WHERE user_id = :id";
-		$stmt = $this->db->conn_id->prepare($sql);
-		$stmt->bindParam(':id', $id);
-		$stmt->execute();
-		foreach($stmt as $row)
-		{
-			$firsttime = $row['firsttimeprofile'];
-		}
-		if($firsttime==1)
-		{
-			return True;
-		}else{
-			return False;
-		}
-	}
-
-	public function get_destinations()
-	{
-	$sql = "SELECT * FROM destinations ORDER BY destination_name ASC";
-	$stmt = $this->db->conn_id->prepare($sql);
-	//$stmt->bindParam(':userid', $myuserid, PDO::PARAM_STR);
-	$stmt->execute();
-
-	$data = array();
-
-		foreach($stmt as $row)
-		{
-			$data[] = array('destination_id' => $row['destination_id'],'destination_name' => $row['destination_name']);
-		}
-
-		return $data;
-	}
-
-	public function insert_holiday()
-	{
-		$user_id = $this->session->userdata('user_id');
-		$destination=strip_tags($this->input->post('destination'));
-		$arrivaldate=strip_tags($this->input->post('arrivaldate'));
-		$returndate=$this->input->post('returndate');
-		$description=strip_tags($this->input->post('description'));
-		//echo $arrivaldate;
-
-		$stmt = $this->db->conn_id->prepare("INSERT INTO holidays(destination_id, user_id, arrival, departure, description) VALUES (:destination_id,:user_id,:arrival,:departure,:description)");
-		$stmt->execute(array(':destination_id' => $destination,':user_id' => $user_id,':arrival' => $arrivaldate,':departure' => $returndate,':description' => $description));
-
-	}
-
 	public function do_upload()
 	{
 		$user_id = $this->session->userdata('user_id');
@@ -307,30 +224,25 @@ class Login_model extends CI_Model {
 				//end of rotate
 		//form
 
-
-				//insert db
+			//insert db
 		$temp_image_path=$this->config->base_url()."uploads/".$rand.$date.$rand2.$user_id.$image_data['file_ext'];
 		$filename = $thumbname.$image_data['file_ext'];
 
-
-	//$stmt = $this->db->conn_id->prepare("INSERT INTO images(user_id, title, description, category, tags, views, downloads, width, height, filename, rand, approved) VALUES (:user_id,:title,:description,:category,:tags,:views,:downloads,:width,:height,:filename,:rand,:approved)");
-	//$stmt->execute(array(':user_id' => $user_id,':title' => $title,':description' => $description,':category' => $this->input->post('category_id'),':tags' => $tags,':views' => '0',':downloads' => '0',':width' => $width,':height' => $height,':filename' => $thumbname.$image_data['file_ext'],':rand' => $rand,':approved' => '0'));
-	
-	$sql = "UPDATE users SET filename = :filename, firsttime = 0 WHERE user_id = :user_id";
-	$stmt = $this->db->conn_id->prepare($sql);
-	//$stmt->bindParam(':filename' => $thumbname.$image_data['file_ext']);
-	//$stmt->bindParam(':user_id' => $user_id);
-	$stmt->bindParam(':filename', $filename);
-	$stmt->bindParam(':user_id', $user_id);
-	$stmt->execute();
+		$sql = "UPDATE users SET filename = :filename, firsttime = 0 WHERE user_id = :user_id";
+		$stmt = $this->db->conn_id->prepare($sql);
+		//$stmt->bindParam(':filename' => $thumbname.$image_data['file_ext']);
+		//$stmt->bindParam(':user_id' => $user_id);
+		$stmt->bindParam(':filename', $filename);
+		$stmt->bindParam(':user_id', $user_id);
+		$stmt->execute();
 
 
 	}
 
-	public function myholidays()
+	public function mydiscounts()
 	{
 		$user_id = $this->session->userdata('user_id');
-		$sql = "SELECT * FROM holidays INNER JOIN destinations ON destinations.destination_id = holidays.destination_id WHERE user_id = :id ORDER BY holiday_id DESC";
+		//$sql = "SELECT * FROM discounts INNER JOIN destinations ON destinations.destination_id = holidays.destination_id WHERE user_id = :id ORDER BY holiday_id DESC";
 		//$sql = "SELECT * FROM holidays WHERE user_id = :id ORDER BY holiday_id DESC";
 		$stmt = $this->db->conn_id->prepare($sql);
 		$stmt->bindParam(':id', $user_id);

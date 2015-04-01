@@ -15,6 +15,7 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+		$data['profile']=$this->user_model->myprofile();
 		$data['businesses']=$this->user_model->mybusinesses();
 		$this->load->view('header');
 		$this->load->view('sidebar', $data);
@@ -44,6 +45,12 @@ class User extends CI_Controller {
 			$this->load->view("footer");	
 	}
 
+	public function delete_business($business_id)
+	{
+		$this->user_model->delete_business($business_id);
+		redirect('/user/', 'refresh');
+	}
+
 	public function insert_business()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
@@ -54,8 +61,32 @@ class User extends CI_Controller {
 		if($this->form_validation->run() == TRUE)
 		{
 			$this->user_model->insert_business();
-			//redirect('/user/home/', 'refresh');
-			echo "inserted";
+			redirect('/user/', 'refresh');
+			//echo "inserted";
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/addbusiness");
+			$this->load->view("footer");
+		}else{
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/addbusiness");
+			$this->load->view("footer");		
+		}
+	}
+
+	public function update_business($business_id)
+	{
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+		//$this->form_validation->set_rules('businessname', 'Business Name', 'required');
+		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required');
+		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required');
+		$this->form_validation->set_rules('businessurl', 'Business url', 'required|prep_url');
+		if($this->form_validation->run() == TRUE)
+		{
+			$this->user_model->update_business($business_id);
+			redirect('/user/edit_business/'.$business_id, 'refresh');
+			//echo "inserted";
 			$this->load->view("header");
 			$this->load->view('sidebar');
 			$this->load->view("user/addbusiness");
@@ -77,6 +108,33 @@ class User extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
+	public function update_companylogo($business_id)
+	{
+		$data['business_info']=$this->user_model->edit_business($business_id);
+		$this->load->view("header");
+		$this->load->view('sidebar');
+		$this->load->view("user/companylogo", $data);
+		$this->load->view("footer");	
+	}
+
+	public function upload_companylogo($business_id)
+	{
+		$this->user_model->upload_companylogo($business_id);
+		redirect('/user/edit_business/'.$business_id, 'refresh');
+	}
+
+	public function businessname_check($business_name)
+	{
+		if ($this->user_model->unique_business($business_name))
+		{
+			$this->form_validation->set_message('businessname_check', 'This %s has already been taken.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 
 
 	

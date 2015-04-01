@@ -4,6 +4,7 @@ $brand-blue: #345888;
 $off-white: #f2f2f2;
 $grey: #eee;
 
+
 body{
 	padding-top:50px;
 	background-color: #f2f2f2;
@@ -159,7 +160,7 @@ h1, h2, h3, h4{
 
 .content-area{
 	background-color: white;
-	padding: 0px 15px;
+	padding: 0px 15px 40px 15px;
 
 	h1, h2{
 		color: $brand-blue;
@@ -179,6 +180,18 @@ h1, h2, h3, h4{
 }
 .bluebg{
 	background-color: $brand-blue;
+}
+
+/* Control Panel */
+.profile-pic-btn{
+	position: relative;
+	z-index: 100;
+	margin-top: -45px;
+}
+
+/* edit business */
+.form-border-left{
+	border-left: 1px solid $grey;
 }
 
 /*media queries*/
