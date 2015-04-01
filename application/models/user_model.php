@@ -22,11 +22,52 @@ class User_model extends CI_Model {
 
 		foreach($stmt as $row)
 		{
-		$data[] = array('business_name' => $row['business_name']);
+		$data[] = array('business_name' => $row['business_name'],'business_id' => $row['business_id']);
 		}
+
+		//check if the business belongs to the user if not redirect to their control panel
+		$numofbus = count($stmt);
+		if($numofbus == 0){
+			redirect('user/', 'location');
+		}else{
+			return $data;
+		}
+	}
+
+	public function edit_business($business_id)
+	{
+		$user_id = $this->session->userdata('user_id');
+		$sql = "SELECT * FROM businesses WHERE user_id = :user_id AND business_id = :business_id ORDER BY business_id DESC";
+		$stmt = $this->db->conn_id->prepare($sql);
+		$stmt->bindParam(':user_id', $user_id);
+		$stmt->bindParam(':business_id', $business_id);
+		$stmt->execute();
+
+		$data = array();
+
+		foreach($stmt as $row)
+		{
+		$data[] = array('business_id' => $row['business_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel']);
+		}
+
+		if()
 
 		return $data;
 
+	}
+
+	public function insert_business()
+	{
+		$user_id = $this->session->userdata('user_id');
+		$name=strip_tags($this->input->post('businessname'));
+		$desc=strip_tags($this->input->post('businessdesc'));
+		$url=strip_tags($this->input->post('businessurl'));
+		$email=strip_tags($this->input->post('businessemail'));
+		$address=strip_tags($this->input->post('businessaddress'));
+		$tel=strip_tags($this->input->post('businesstel'));
+
+		$stmt = $this->db->conn_id->prepare("INSERT INTO businesses(user_id, business_name, description, website, company_email, address, tel) VALUES (:user_id,:name,:description,:url,:email,:address,:tel)");
+		$stmt->execute(array(':user_id' => $user_id,':name' => $name,':description' => $desc,':url' => $url,':email' => $email,':address' => $address,':tel' => $tel));
 	}
 
 	public function do_upload()

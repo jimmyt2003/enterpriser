@@ -17,8 +17,8 @@ class User extends CI_Controller {
 	{
 		$data['businesses']=$this->user_model->mybusinesses();
 		$this->load->view('header');
-		$this->load->view('sidebar');
-		$this->load->view("user/controlpanel", $data);
+		$this->load->view('sidebar', $data);
+		$this->load->view('user/controlpanel', $data);
 		$this->load->view('footer');
 	}
 
@@ -42,6 +42,39 @@ class User extends CI_Controller {
 			$this->load->view('sidebar');
 			$this->load->view("user/addbusiness");
 			$this->load->view("footer");	
+	}
+
+	public function insert_business()
+	{
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+		$this->form_validation->set_rules('businessname', 'Business Name', 'required');
+		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required');
+		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required');
+		$this->form_validation->set_rules('businessurl', 'Business url', 'required|prep_url');
+		if($this->form_validation->run() == TRUE)
+		{
+			$this->user_model->insert_business();
+			//redirect('/user/home/', 'refresh');
+			echo "inserted";
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/addbusiness");
+			$this->load->view("footer");
+		}else{
+			$this->load->view("header");
+			$this->load->view('sidebar');
+			$this->load->view("user/addbusiness");
+			$this->load->view("footer");		
+		}
+	}
+
+	public function edit_business($business_id)
+	{
+		$data['business_info']=$this->user_model->edit_business($business_id);
+		$this->load->view('header');
+		$this->load->view('sidebar', $data);
+		$this->load->view('user/edit_business', $data);
+		$this->load->view('footer');
 	}
 	
 

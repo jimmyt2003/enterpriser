@@ -28,19 +28,19 @@
 				</div>
 
 				<div class="form-group">
-					<label for="exampleInputEmail1">Business Name</label>
+					<label for="exampleInputEmail1">Business Description <small>(1000 Characters Max)</small></label>
 				    <?php
 					    $data = array(
-			              'name'        => 'businessname',
-			              'id'          => 'businessname',
-			              'value'       => set_value('businessname'),
-			              'maxlength'   => '40',
+			              'name'        => 'businessdesc',
+			              'id'          => 'businessdesc',
+			              'value'       => set_value('businessdesc'),
+			              'maxlength'   => '1000',
 			              'class'        => 'form-control',
 			              'required'	=> 'required',
 			              'placeholder' => 'Business Name'
 			            );
 
-						echo form_input($data);
+						echo form_textarea($data);
 					?>
 				</div>
 
@@ -53,7 +53,6 @@
 			              'value'       => set_value('businessurl'),
 			              'maxlength'   => '50',
 			              'class'        => 'form-control',
-			              'required'	=> 'required',
 			              'placeholder' => 'http://www.your-business.com'
 			            );
 
@@ -62,15 +61,15 @@
 				</div>
 
 				<div class="form-group">
-					<label for="exampleInputEmail1">Business Name</label>
+					<label for="exampleInputEmail1">Business Email</label>
 				    <?php
 					    $data = array(
-			              'name'        => 'businessname',
-			              'id'          => 'businessname',
-			              'value'       => set_value('businessname'),
+			              'name'        => 'businessemail',
+			              'id'          => 'businessemail',
+			              'value'       => set_value('businessemail'),
 			              'maxlength'   => '40',
 			              'class'        => 'form-control',
-			              'required'	=> 'required',
+			              'type'	=> 'email',
 			              'placeholder' => 'Business Name'
 			            );
 
@@ -78,7 +77,42 @@
 					?>
 				</div>
 
-				<button type="submit" class="btn btn-default">Login</button>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Business Address <small>(1000 Characters Max)</small></label>
+				    <?php
+					    $data = array(
+			              'name'        => 'businessaddress',
+			              'id'          => 'businessaddress',
+			              'value'       => set_value('businessaddress'),
+			              'maxlength'   => '250',
+			              'class'        => 'form-control',
+			              'rows'	=> '5',
+			              'placeholder' => 'Business Address'
+			            );
+
+						echo form_textarea($data);
+					?>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputEmail1">Business Telephone</label>
+				    <?php
+					    $data = array(
+			              'name'        => 'businesstel',
+			              'id'          => 'businesstel',
+			              'value'       => set_value('businesstel'),
+			              'maxlength'   => '40',
+			              'class'        => 'form-control',
+			              'required'	=> 'required',
+			              'type'	=> 'tel',
+			              'placeholder' => 'Telephone Number'
+			            );
+
+						echo form_input($data);
+					?>
+				</div>
+
+				<button type="submit" class="btn btn-default">Add Business</button>
 				</form>
 			</div>
 	</div>
