@@ -1,5 +1,6 @@
 # enterpriser Implementation list
 
+- Link Domain name to hosting account using DNS
 - Create github directory and set up on laptop and imac
 - Download codeigniter MVC framework and install onto machine, then upload to git repository
 - Install less css compiler and set up style.css to track style.less
@@ -17,3 +18,10 @@
 - added email validation feature which sends an email on registration with a link. Once clicked this sets a verified maker in the database and the user can login
 - Did some mobile tweaks
 - Created code in the sidebar which detects what controller and method the user is currenrently visiting and changes the content
+- Created a control panel view where info about the user will be shown
+- created a function in the user model to show a list of the users businesses
+- created an add business form
+- created form validation to check that fields are inputted correctly
+- created an add business model function to insert the businesss into the database
+- created an edit business view which is populated by entries from the database
+- added a check to make sure that the business being edited belongs to the user if not they are redirected
