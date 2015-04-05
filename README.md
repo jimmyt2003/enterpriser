@@ -25,3 +25,7 @@
 - created an add business model function to insert the businesss into the database
 - created an edit business view which is populated by entries from the database
 - added a check to make sure that the business being edited belongs to the user if not they are redirected
+- added a validation check to make sure the business name when adding a business is unique (because it will be used for the url path to the profile page for SEO reasons)
+- Added minimum and max values to inputs on the add and edit business forms
+- added function to enable users to upload a company logo to their business which will be shown on the businesses profile page
+- added a delete business feature in case the user would like to remove the business
