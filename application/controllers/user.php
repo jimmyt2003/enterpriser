@@ -54,10 +54,10 @@ class User extends CI_Controller {
 	public function insert_business()
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		$this->form_validation->set_rules('businessname', 'Business Name', 'required');
-		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required');
-		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required');
-		$this->form_validation->set_rules('businessurl', 'Business url', 'required|prep_url');
+		$this->form_validation->set_rules('businessname', 'Business Name', 'required|callback_businessname_check|callback_alpha_dash_space|max_length[30]|min_length[3]');
+		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required|max_length[1000]|min_length[10]');
+		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required|max_length[16]|min_length[5]');
+		$this->form_validation->set_rules('businessurl', 'Business url', 'prep_url|max_length[100]|min_length[3]');
 		if($this->form_validation->run() == TRUE)
 		{
 			$this->user_model->insert_business();
@@ -79,9 +79,9 @@ class User extends CI_Controller {
 	{
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 		//$this->form_validation->set_rules('businessname', 'Business Name', 'required');
-		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required');
-		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required');
-		$this->form_validation->set_rules('businessurl', 'Business url', 'required|prep_url');
+		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required|max_length[1000]|min_length[10]');
+		$this->form_validation->set_rules('businesstel', 'Business Telephone', 'required|max_length[16]|min_length[5]');
+		$this->form_validation->set_rules('businessurl', 'Business url', 'prep_url|max_length[100]|min_length[3]');
 		if($this->form_validation->run() == TRUE)
 		{
 			$this->user_model->update_business($business_id);
@@ -135,6 +135,16 @@ class User extends CI_Controller {
 			return TRUE;
 		}
 	}
+
+	function alpha_dash_space($business_name)
+	{
+	    if(!preg_match("/^([a-z ])+$/i", $business_name)){
+	    	$this->form_validation->set_message('alpha_dash_space', 'This %s has special characters.');
+	    	return FALSE;
+	    }else{
+	    	return TRUE;
+	    }
+	} 
 
 
 	

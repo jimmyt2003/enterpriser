@@ -1,8 +1,11 @@
-<?php foreach($business_info as $business){ ?>	
+<?php foreach($business_info as $business){ 
+	$strippedurl = str_replace(' ', '_', $business['business_name']);
+	$strippedurl = strtolower($strippedurl);
+?>	
 <div class="col-xs-12 col-sm-9 col-md-8 col-lg-9 content-area">
 <h1><?php echo $business['business_name']; ?> <small>Edit Business</small></h1>
 <div class="well well-sm">
-	<p><strong>Website Link:</strong> <a href="#"><?php echo base_url(); ?></a></p>
+	<p><strong>Website Link:</strong> <a href="<?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?>"><?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?></a></p>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-10 col-md-offset-1">
@@ -11,23 +14,31 @@
 </div>
 
 	<div class="row text-center">
-		<div class="col-xs-4">Theme1</div>
-		<div class="col-xs-4">Theme1</div>
-		<div class="col-xs-4">Theme1</div>
+		<h4>Set Theme</h4>
+		<div class="col-xs-4"><img class="img-responsive center-block text-center" src="http://placehold.it/250x200"></div>
+		<div class="col-xs-4"><img class="img-responsive" src="http://placehold.it/250x200"></div>
+		<div class="col-xs-4"><img class="img-responsive" src="http://placehold.it/250x200"></div>
 	</div>
-
+<hr>
 
 	<div class="row text-left">
 		<div class="col-lg-5 col-xs-10 col-sm-3 col-xs-offset-1 col-lg-offset-1 col-sm-offset-0 col-xs-offset-1">
-			<p><strong>Logo</strong></p>
-			<img src="<?php echo base_url(); ?>uploads/logos/<?php echo $business['logo']; ?>"/>
-    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Logo</a>
-    		
+			<div class="row">	
+				<div class="col-xs-12">
+					<h4>Company Logo</h4>
+				</div>
+				<div class="col-xs-12">
+					<img class="img-responsive" src="<?php echo base_url(); ?>uploads/logos/<?php if($business['logo']==""){ echo "noimg.jpg";}else{ echo $business['logo']; } ?>"/>
+		    	</div>
+		    	<div class="col-xs-12">
+		    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Logo</a>
+	    		</div>
+	    	</div>
 		</div>
 
     	<?php echo form_open('user/update_business/'.$business['business_id']); ?>
     		<div class="col-lg-6 col-lg-offset-0 col-xs-10 col-sm-7 form-border-left">
-
+    			<h4>Company Details</h4>
 				<div class="form-group">
 					<label for="businessname">Business Name</label>
 				    <?php

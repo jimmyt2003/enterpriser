@@ -40,6 +40,8 @@
 
 $route['default_controller'] = "login/template";
 $route['404_override'] = '';
+//business pages
+$route['b/(:any)'] = "bus/business/$1";
 
 
 /* End of file routes.php */
