@@ -64,7 +64,7 @@ class User_model extends CI_Model {
 
 		foreach($stmt as $row)
 		{
-			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel']);
+			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'menucolor' => $row['menucolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto']);
 		}
 
 		return $data;
@@ -247,6 +247,70 @@ class User_model extends CI_Model {
 	//$stmt->execute(array(':user_id' => $user_id,':title' => $title,':description' => $description,':category' => $this->input->post('category_id'),':tags' => $tags,':views' => '0',':downloads' => '0',':width' => $width,':height' => $height,':filename' => $thumbname.$image_data['file_ext'],':rand' => $rand,':approved' => '0'));
 	
 	$sql = "UPDATE businesses SET logo = :filename WHERE user_id = :user_id AND business_id = :business_id";
+	$stmt = $this->db->conn_id->prepare($sql);
+	$stmt->bindParam(':filename', $thumbnailsrc);
+	$stmt->bindParam(':user_id', $user_id);
+	$stmt->bindParam(':business_id', $business_id);
+	$stmt->execute();
+
+	}
+
+	public function upload_coverphoto($business_id)
+	{
+		$user_id = $this->session->userdata('user_id');
+		$rand = $business_id;
+		$type = "cover";
+		//$date = 0;
+		$thumbname = $user_id.$business_id.$type;
+		//$filename = $image_data['file_name'];
+		$config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $this->gallery_path,
+			'file_name' => $user_id
+			);
+		$this->load->library('upload', $config);
+		$this->upload->do_upload();
+		$image_data = $this->upload->data();
+
+		//$width=$image_data['image_width'];
+		//$height=$image_data['image_height'];
+		$thumbnailsrc=$thumbname.$image_data['file_ext'];
+		$config = array(
+				'image_library' => 'imagemagick',
+				'library_path' => '/usr/bin/',
+				'source_image' => $image_data['full_path'],
+				'new_image' => $this->gallery_path . '/covers/'.$thumbname.$image_data['file_ext'],
+				'maintain_ratio' => true,
+				'width' => 1170,
+				'height' => 250,
+				'create_thumb' => true,
+				'master_dim' => 'height',
+				'thumb_marker' => ''
+			);
+
+
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
+		$this->image_lib->clear();
+
+				$full_path = $this->gallery_path . '/covers/'.$thumbnailsrc;
+
+				// check EXIF and autorotate if needed
+				$this->load->library('image_autorotate', array('filepath' => $full_path));
+
+				//end of rotate
+		//form
+
+
+				//insert db
+		$temp_image_path=$this->config->base_url()."uploads/covers/".$user_id.$business_id.$type.$image_data['file_ext'];
+		$filename = $thumbname.$image_data['file_ext'];
+
+
+	//$stmt = $this->db->conn_id->prepare("INSERT INTO images(user_id, title, description, category, tags, views, downloads, width, height, filename, rand, approved) VALUES (:user_id,:title,:description,:category,:tags,:views,:downloads,:width,:height,:filename,:rand,:approved)");
+	//$stmt->execute(array(':user_id' => $user_id,':title' => $title,':description' => $description,':category' => $this->input->post('category_id'),':tags' => $tags,':views' => '0',':downloads' => '0',':width' => $width,':height' => $height,':filename' => $thumbname.$image_data['file_ext'],':rand' => $rand,':approved' => '0'));
+	
+	$sql = "UPDATE businesses SET coverphoto = :filename WHERE user_id = :user_id AND business_id = :business_id";
 	$stmt = $this->db->conn_id->prepare($sql);
 	$stmt->bindParam(':filename', $thumbnailsrc);
 	$stmt->bindParam(':user_id', $user_id);

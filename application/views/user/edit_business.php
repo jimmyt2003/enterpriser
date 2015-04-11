@@ -13,25 +13,47 @@
 	</div>
 </div>
 
-	<div class="row text-center">
-		<h4>Set Theme</h4>
-		<div class="col-xs-4"><img class="img-responsive center-block text-center" src="http://placehold.it/250x200"></div>
-		<div class="col-xs-4"><img class="img-responsive" src="http://placehold.it/250x200"></div>
-		<div class="col-xs-4"><img class="img-responsive" src="http://placehold.it/250x200"></div>
-	</div>
 <hr>
 
 	<div class="row text-left">
 		<div class="col-lg-5 col-xs-10 col-sm-3 col-xs-offset-1 col-lg-offset-1 col-sm-offset-0 col-xs-offset-1">
 			<div class="row">	
 				<div class="col-xs-12">
-					<h4>Company Logo</h4>
+					<h4>Theme Options</h4>
+				</div>
+				<hr>
+				<div class="col-xs-12">
+					<strong>Company Logo</strong>
 				</div>
 				<div class="col-xs-12">
 					<img class="img-responsive" src="<?php echo base_url(); ?>uploads/logos/<?php if($business['logo']==""){ echo "noimg.jpg";}else{ echo $business['logo']; } ?>"/>
 		    	</div>
 		    	<div class="col-xs-12">
 		    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Logo</a>
+	    		</div>
+	    	</div>
+	    	<hr>
+	    	<div class="row">	
+				<div class="col-xs-12">
+					<strong>Header Image</strong>
+				</div>
+				<div class="col-xs-12">
+					<img class="img-responsive" src="<?php echo base_url(); ?>uploads/covers/<?php if($business['coverphoto']==""){ echo "noimg.jpg";}else{ echo $business['coverphoto']; } ?>"/>
+		    	</div>
+		    	<div class="col-xs-12">
+		    		<a href="<?php echo base_url(); ?>index.php/user/update_coverphoto/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Header</a>
+	    		</div>
+	    	</div>
+	    	<hr>
+	    	<div class="row">	
+				<div class="col-xs-12">
+					<strong>Colour Scheme</strong>
+				</div>
+				<div class="col-xs-12">
+					Menu Colour:
+		    	</div>
+		    	<div class="col-xs-12">
+		    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Save Colours</a>
 	    		</div>
 	    	</div>
 		</div>

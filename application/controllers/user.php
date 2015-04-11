@@ -123,6 +123,21 @@ class User extends CI_Controller {
 		redirect('/user/edit_business/'.$business_id, 'refresh');
 	}
 
+	public function update_coverphoto($business_id)
+	{
+		$data['business_info']=$this->user_model->edit_business($business_id);
+		$this->load->view("header");
+		$this->load->view('sidebar');
+		$this->load->view("user/coverphoto", $data);
+		$this->load->view("footer");	
+	}
+
+	public function upload_coverphoto($business_id)
+	{
+		$this->user_model->upload_coverphoto($business_id);
+		redirect('/user/edit_business/'.$business_id, 'refresh');
+	}
+
 	public function businessname_check($business_name)
 	{
 		if ($this->user_model->unique_business($business_name))
