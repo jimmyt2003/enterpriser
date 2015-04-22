@@ -29,3 +29,5 @@
 - Added minimum and max values to inputs on the add and edit business forms
 - added function to enable users to upload a company logo to their business which will be shown on the businesses profile page
 - added a delete business feature in case the user would like to remove the business
+- Added a categories table
+- Added a relationship between businesses and categories
