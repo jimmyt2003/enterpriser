@@ -80,6 +80,15 @@
 				</div>
 
 				<div class="form-group">
+					<label for="category">Business Category</label>
+					<select class="form-control" name="category">
+						<?php foreach($cats as $cat_item){ ?>
+							<option value="<?php echo $cat_item['cat_id'];?>" <?php if($cat_item['cat_id']==$business['cat_id']){echo "selected";} ?>><?php echo $cat_item['cat_name'];?></option>
+						<?php } ?>
+					</select>
+				</div>
+
+				<div class="form-group">
 					<label for="businessdesc">Business Description <small>(1000 Characters Max)</small></label>
 				    <?php
 					    $data = array(

@@ -2,7 +2,10 @@
 
 <div class="container">
 	<div class="">
+		<div class="jumbotron">
+			<h1 class="white"><?php echo $business['business_name']; ?></h1>
+		</div>
 		
-<?php echo $business['business_name']; ?><br><?php echo $business['business_id']; ?>
+		<br><?php echo $business['business_id']; ?>
 
-<?php } ?>
+		<?php } ?>

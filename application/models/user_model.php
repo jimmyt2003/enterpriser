@@ -46,6 +46,22 @@ class User_model extends CI_Model {
 		return $data;
 	}
 
+	public function cats()
+	{
+		$sql = "SELECT * FROM categories ORDER BY cat_name ASC";
+		$stmt = $this->db->conn_id->prepare($sql);
+		$stmt->execute();
+
+		$data = array();
+
+		foreach($stmt as $row)
+		{
+		$data[] = array('cat_id' => $row['cat_id'],'cat_name' => $row['cat_name']);
+		}
+
+		return $data;
+	}
+
 	public function edit_business($business_id)
 	{
 		$user_id = $this->session->userdata('user_id');
@@ -64,7 +80,7 @@ class User_model extends CI_Model {
 
 		foreach($stmt as $row)
 		{
-			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'menucolor' => $row['menucolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto']);
+			$data[] = array('business_id' => $row['business_id'],'cat_id' => $row['cat_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'menucolor' => $row['menucolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto']);
 		}
 
 		return $data;
@@ -92,12 +108,13 @@ class User_model extends CI_Model {
 			$email=strip_tags($this->input->post('businessemail'));
 			$address=strip_tags($this->input->post('businessaddress'));
 			$tel=strip_tags($this->input->post('businesstel'));
+			$cat=strip_tags($this->input->post('category'));
 
-			$sql = "UPDATE businesses SET description = :description, website = :url, company_email = :email, address = :address, tel = :tel WHERE user_id = :user_id AND business_id = :business_id";
+			$sql = "UPDATE businesses SET cat_id = :cat_id,description = :description, website = :url, company_email = :email, address = :address, tel = :tel WHERE user_id = :user_id AND business_id = :business_id";
 			$stmt = $this->db->conn_id->prepare($sql);
 			$stmt->bindParam(':business_id', $business_id);
 			$stmt->bindParam(':user_id', $user_id);
-			//$stmt->bindParam(':name', $name);
+			$stmt->bindParam(':cat_id', $cat);
 			$stmt->bindParam(':description', $desc);
 			$stmt->bindParam(':url', $url);
 			$stmt->bindParam(':email', $email);
@@ -121,9 +138,10 @@ class User_model extends CI_Model {
 		$email=strip_tags($this->input->post('businessemail'));
 		$address=strip_tags($this->input->post('businessaddress'));
 		$tel=strip_tags($this->input->post('businesstel'));
+		$cat=strip_tags($this->input->post('category'));
 
-		$stmt = $this->db->conn_id->prepare("INSERT INTO businesses(user_id, business_name, description, website, company_email, address, tel) VALUES (:user_id,:name,:description,:url,:email,:address,:tel)");
-		$stmt->execute(array(':user_id' => $user_id,':name' => $name,':description' => $desc,':url' => $url,':email' => $email,':address' => $address,':tel' => $tel));
+		$stmt = $this->db->conn_id->prepare("INSERT INTO businesses(user_id, cat_id, business_name, description, website, company_email, address, tel) VALUES (:user_id,:cat_id,:name,:description,:url,:email,:address,:tel)");
+		$stmt->execute(array(':user_id' => $user_id,':cat_id' => $cat,':name' => $name,':description' => $desc,':url' => $url,':email' => $email,':address' => $address,':tel' => $tel));
 	}
 
 	public function do_upload()

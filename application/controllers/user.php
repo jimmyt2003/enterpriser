@@ -25,10 +25,10 @@ class User extends CI_Controller {
 
 	public function update_profilepic()
 	{
-			$this->load->view("header");
-			$this->load->view('sidebar');
-			$this->load->view("user/profilepic");
-			$this->load->view("footer");	
+		$this->load->view("header");
+		$this->load->view('sidebar');
+		$this->load->view("user/profilepic");
+		$this->load->view("footer");	
 	}
 
 	public function upload_profilepic()
@@ -39,10 +39,11 @@ class User extends CI_Controller {
 
 	public function add_business()
 	{
-			$this->load->view("header");
-			$this->load->view('sidebar');
-			$this->load->view("user/addbusiness");
-			$this->load->view("footer");	
+		$data['cats']=$this->user_model->cats();
+		$this->load->view("header");
+		$this->load->view('sidebar');
+		$this->load->view("user/addbusiness", $data);
+		$this->load->view("footer");	
 	}
 
 	public function delete_business($business_id)
@@ -53,6 +54,7 @@ class User extends CI_Controller {
 
 	public function insert_business()
 	{
+		$data['cats']=$this->user_model->cats();
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 		$this->form_validation->set_rules('businessname', 'Business Name', 'required|callback_businessname_check|callback_alpha_dash_space|max_length[30]|min_length[3]');
 		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required|max_length[1000]|min_length[10]');
@@ -65,18 +67,19 @@ class User extends CI_Controller {
 			//echo "inserted";
 			$this->load->view("header");
 			$this->load->view('sidebar');
-			$this->load->view("user/addbusiness");
+			$this->load->view("user/addbusiness", $data);
 			$this->load->view("footer");
 		}else{
 			$this->load->view("header");
 			$this->load->view('sidebar');
-			$this->load->view("user/addbusiness");
+			$this->load->view("user/addbusiness", $data);
 			$this->load->view("footer");		
 		}
 	}
 
 	public function update_business($business_id)
 	{
+		$data['cats']=$this->user_model->cats();
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 		//$this->form_validation->set_rules('businessname', 'Business Name', 'required');
 		$this->form_validation->set_rules('businessdesc', 'Business Description', 'required|max_length[1000]|min_length[10]');
@@ -89,18 +92,19 @@ class User extends CI_Controller {
 			//echo "inserted";
 			$this->load->view("header");
 			$this->load->view('sidebar');
-			$this->load->view("user/addbusiness");
+			$this->load->view("user/addbusiness", $data);
 			$this->load->view("footer");
 		}else{
 			$this->load->view("header");
 			$this->load->view('sidebar');
-			$this->load->view("user/addbusiness");
+			$this->load->view("user/addbusiness", $data);
 			$this->load->view("footer");		
 		}
 	}
 
 	public function edit_business($business_id)
 	{
+		$data['cats']=$this->user_model->cats();
 		$data['business_info']=$this->user_model->edit_business($business_id);
 		$this->load->view('header');
 		$this->load->view('sidebar', $data);
