@@ -48,14 +48,14 @@ class Login_model extends CI_Model {
 
 			$this->email->initialize($config);
 
-			$this->email->from('noreply@dev.enterpriser.co.uk', 'Enterpriser');
+			$this->email->from('noreply@enterpriser.co.uk', 'Enterpriser');
 			$this->email->to($email); 
 
 			$this->email->subject('Enterpriser Email Verification');
 			$message="<h2>Thank you for joining Enterpriser</h2>
 			<p>To complete your registration please click the link below to verify your account and login.</p>
-			<p><strong><a href='http://dev.enterpriser.co.uk/index.php/login/approve/".$randstring."'>Approve</a></strong></p>
-			<p>Alternatively copy and paste the following link into your address bar: http://dev.enterpriser.co.uk/index.php/login/approve/".$randstring."</p>
+			<p><strong><a href='http://enterpriser.co.uk/index.php/login/approve/".$randstring."'>Approve</a></strong></p>
+			<p>Alternatively copy and paste the following link into your address bar: http://enterpriser.co.uk/index.php/login/approve/".$randstring."</p>
 			<br>
 			<p>Thanks,<br>Enterpriser.co.uk</p>";
 			$this->email->message($message);	

@@ -19,7 +19,7 @@ if (strpos($url,'~james') !== false)
 {
 	$config['base_url']	= 'http://localhost/~james/enterpriser/';
 }else{
-	$config['base_url']	= 'http://dev.enterpriser.co.uk/';
+	$config['base_url']	= 'http://enterpriser.co.uk/';
 }
 
 /*
