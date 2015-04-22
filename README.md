@@ -31,3 +31,9 @@
 - added a delete business feature in case the user would like to remove the business
 - Added a categories table
 - Added a relationship between businesses and categories
+- Designed a mini webpage for each business
+- Added functionality to let users choose colour schemes for their page
+- Created a directory controller
+- Created a view to show all the categories for businesses
+- Added business lists inside each category
+- Created business profile page where other businesses can message, view special offers and offer services
