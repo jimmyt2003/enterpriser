@@ -15,9 +15,9 @@
 |
 */
 $url = $_SERVER['REQUEST_URI'];
-if (strpos($url,'~james') !== false)
+if (strpos($url,'8080') !== false)
 {
-	$config['base_url']	= 'http://localhost/~james/enterpriser/';
+	$config['base_url']	= 'http://localhost:8080/';
 }else{
 	$config['base_url']	= 'http://enterpriser.co.uk/';
 }
