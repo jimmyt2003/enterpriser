@@ -11,13 +11,13 @@ html, body{
 	background-color: <?php echo $business['bgcolor']; ?> !important;
 }
 
-.jumbobg{
+.jumbobg:before{
 	background: url("<?php echo $coverurl ?>");
 	background-size: cover;
 	background-repeat: no-repeat;
 	color:  #<?php echo $business_item['headercolor']; ?> !important;
 }
-.jumbobg h1{
+.jumboh1 {
 	color:  #<?php echo $business_item['headercolor']; ?> !important;
 }
 </style>
@@ -28,11 +28,35 @@ html, body{
 						<img src="<?php echo $logourl; ?>" class="img-responsive"/>
 					</div>
 					<div class="col-xs-9">
-						<h1><?php echo $business_item['business_name']; ?></h1>
+						<h1 class="jumboh1"><?php echo $business_item['business_name']; ?></h1>
 					</div>
 				</div>
         	</div>
-            <a href="<?php echo base_url(); ?>index.php/directory/cat/<?php echo $business_item['business_id']; ?>"><?php echo $business_item['business_name']; ?></a>
+        	<h2>Company Info</h2>
+        	<div class="row">
+        		<div class="col-md-6">
+        			<h4>Description</h4>
+        			<p><?php echo $business_item['description']; ?></p>
+        		</div>
+        		<div class="col-md-6 well well-sm">
+        			<h4>Address</h4>
+        			<p><?php echo $business_item['address']; ?></p>
+        			<h4>Phone Number</h4>
+        			<p><?php echo $business_item['tel']; ?></p>
+        		</div>
+        	
+        		<h2>Service Swap Opportunities</h2>
+        		<div class="col-md-6">
+        			<h4>Services Required</h4>
+        			<p><?php echo $business_item['description']; ?></p>
+        		</div>
+        		<div class="col-md-6 well well-sm">
+        			<h4>Services On Offer</h4>
+        			<p><?php echo $business_item['description']; ?></p>
+        			
+        		</div>
+        	</div>
+            <a href="<?php echo base_url(); ?>directory/cat/<?php echo $business_item['business_id']; ?>"><?php echo $business_item['business_name']; ?></a>
         </div>
     <?php } ?>
     

@@ -26,14 +26,14 @@ html, body{
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?>"><?php echo $business['business_name']; ?></a>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>b/<?php echo $strippedurl; ?>"><?php echo $business['business_name']; ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Services</a></li>
-            <li><a href="#contact">Special Offers</a></li>
-            <li><a href="#contact">Desk Space</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#specials">Special Offers</a></li>
+            <li><a href="#desks">Desk Space</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-earphone"></span> <?php echo $business['tel']; ?></a></li>
@@ -51,21 +51,32 @@ html, body{
 				</div>
 				<div class="col-xs-9">
 					<h1><?php echo $business['business_name']; ?></h1>
-					<p><?php echo $business['description']; ?></p>
 				</div>
 			</div>
 		</div>
 
 		<div class="jumbotron">
-			<h4>Heading 2</h4>
+			<a name="home"></a> 
+			<h4>Company Description</h4>
+			<p><?php echo $business['description']; ?></p>
 		</div>
 
 		<div class="jumbotron">
-			<h4>Heading 3</h4>
+			<a name="services"></a>
+			<h4>Services</h4>
+			<p>Services here</p>
 		</div>
 
 		<div class="jumbotron">
-			<h4>Heading 4</h4>
+			<a name="specials"></a>
+			<h4>Special Offers</h4>
+			<p>special offers</p>
+		</div>
+
+		<div class="jumbotron">
+			<a name="desks"></a>
+			<h4>Desk Space</h4>
+			<p>Desk Space</p>
 		</div>
 		
 		<footer>

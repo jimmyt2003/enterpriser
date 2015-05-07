@@ -5,7 +5,7 @@
 <div class="col-xs-12 col-sm-9 col-md-8 col-lg-9 content-area">
 <h1><?php echo $business['business_name']; ?> <small>Edit Business</small></h1>
 <div class="well well-sm">
-	<p><strong>Website Link:</strong> <a target="_blank" href="<?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?>"><?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?></a></p>
+	<p><strong>Website Link:</strong> <a target="_blank" href="<?php echo base_url(); ?>b/<?php echo $strippedurl; ?>"><?php echo base_url(); ?>b/<?php echo $strippedurl; ?></a></p>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-10 col-md-offset-1">
@@ -29,7 +29,7 @@
 					<img class="img-responsive" src="<?php echo base_url(); ?>uploads/logos/<?php if($business['logo']==""){ echo "noimg.jpg";}else{ echo $business['logo']; } ?>"/>
 		    	</div>
 		    	<div class="col-xs-12">
-		    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Logo</a>
+		    		<a href="<?php echo base_url(); ?>user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Logo</a>
 	    		</div>
 	    	</div>
 	    	<hr>
@@ -41,7 +41,7 @@
 					<img class="img-responsive" src="<?php echo base_url(); ?>uploads/covers/<?php if($business['coverphoto']==""){ echo "noimg.jpg";}else{ echo $business['coverphoto']; } ?>"/>
 		    	</div>
 		    	<div class="col-xs-12">
-		    		<a href="<?php echo base_url(); ?>index.php/user/update_coverphoto/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Header</a>
+		    		<a href="<?php echo base_url(); ?>user/update_coverphoto/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Header</a>
 	    		</div>
 	    	</div>
 	    
@@ -238,7 +238,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-        <a href="<?php echo base_url(); ?>index.php/user/delete_business/<?php echo $business['business_id']; ?>" class="btn btn-danger">Delete Business</a>
+        <a href="<?php echo base_url(); ?>user/delete_business/<?php echo $business['business_id']; ?>" class="btn btn-danger">Delete Business</a>
       </div>
     </div>
   </div>

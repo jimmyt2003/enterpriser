@@ -29,15 +29,15 @@
           <ul class="nav navbar-nav">
             <li><a href="#serviceswap"><span class="glyphicon glyphicon-transfer"></span> Service Swap</a></li>
             <li><a href="#" data-toggle="tooltip" title="" data-original-title="Default tooltip"><span class="glyphicon glyphicon-print"></span> Office Space</a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/directory"><span class="glyphicon glyphicon-list-alt"></span> Company Directory</a></li>
+            <li><a href="<?php echo base_url(); ?>directory"><span class="glyphicon glyphicon-list-alt"></span> Company Directory</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <?php if($this->session->userdata('user_id')){?>
-            <li><a href="<?php echo base_url(); ?>index.php/user/"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?></span></a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/login/logout">Logout</span></a></li>
+            <li><a href="<?php echo base_url(); ?>user/"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?></span></a></li>
+            <li><a href="<?php echo base_url(); ?>login/logout">Logout</span></a></li>
             <?php }else{ ?>
-            <li><a href="<?php echo base_url(); ?>index.php/login/register">Register</span></a></li>
-            <li><a href="<?php echo base_url(); ?>index.php/login/login">Login</span></a></li>
+            <li><a href="<?php echo base_url(); ?>login/register">Register</span></a></li>
+            <li><a href="<?php echo base_url(); ?>login/login">Login</span></a></li>
             <?php } ?>
           </ul>
         </div><!--/.nav-collapse -->

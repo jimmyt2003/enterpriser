@@ -10,7 +10,7 @@
                     <?php } ?>
     			</div>
     			<div class="col-xs-12">
-    				<a href="<?php echo base_url(); ?>index.php/user/update_profilepic" class="btn btn-primary btn-xs profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Profile Picture</a>
+    				<a href="<?php echo base_url(); ?>user/update_profilepic" class="btn btn-primary btn-xs profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Profile Picture</a>
     			</div>
     		</div>
     	</div>
@@ -19,16 +19,16 @@
             <div class="row">
                 <?php $numofbus = count($businesses); ?>
     		  <h3 class="pull-left">Your Businesses (<?php echo $numofbus; ?>)</h3>
-    		  <a href="<?php echo base_url(); ?>index.php/user/add_business" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add Business</a>
+    		  <a href="<?php echo base_url(); ?>user/add_business" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span> Add Business</a>
     		</div>
             <div class="row">
                 <?php
                 if($numofbus == 0){?>
-                    <p>You have not added a business yet... <strong><a href="<?php echo base_url(); ?>index.php/user/add_business">Add one here</a></strong></p>
+                    <p>You have not added a business yet... <strong><a href="<?php echo base_url(); ?>user/add_business">Add one here</a></strong></p>
                 <?php }else{ ?>
                 <div class="list-group">
                 <?php foreach($businesses as $business){ ?>	
-                      <a href="<?php echo base_url(); ?>index.php/user/edit_business/<?php echo $business['business_id']; ?>" class="list-group-item"><?php echo $business['business_name']; ?></a>
+                      <a href="<?php echo base_url(); ?>user/edit_business/<?php echo $business['business_id']; ?>" class="list-group-item"><?php echo $business['business_name']; ?></a>
         		<?php }} ?>
                 </div>
             </div>

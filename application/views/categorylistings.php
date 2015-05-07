@@ -3,7 +3,7 @@
     <div class="row">
     <?php foreach($businesses as $business_item){ ?> 
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-md-4">
-            <a href="<?php echo base_url(); ?>index.php/p/<?php echo $business_item['business_id']; ?>"><?php echo $business_item['business_name']; ?></a>
+            <a href="<?php echo base_url(); ?>p/<?php echo $business_item['business_id']; ?>"><?php echo $business_item['business_name']; ?></a>
         </div>
     <?php } ?>
     </div>
