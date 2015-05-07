@@ -22,7 +22,7 @@ class Bus_model extends CI_Model {
 
 		foreach($stmt as $row)
 		{
-			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel']);
+			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'bgcolor' => $row['bgcolor'],'headercolor' => $row['headercolor'],'coverphoto' => $row['coverphoto']);
 		}
 
 		return $data;

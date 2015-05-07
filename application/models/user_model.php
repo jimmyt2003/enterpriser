@@ -80,7 +80,7 @@ class User_model extends CI_Model {
 
 		foreach($stmt as $row)
 		{
-			$data[] = array('business_id' => $row['business_id'],'cat_id' => $row['cat_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'menucolor' => $row['menucolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto']);
+			$data[] = array('business_id' => $row['business_id'],'cat_id' => $row['cat_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'headercolor' => $row['headercolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto']);
 		}
 
 		return $data;
@@ -109,8 +109,11 @@ class User_model extends CI_Model {
 			$address=strip_tags($this->input->post('businessaddress'));
 			$tel=strip_tags($this->input->post('businesstel'));
 			$cat=strip_tags($this->input->post('category'));
+			$bgcolor=strip_tags($this->input->post('bgcolor'));
+			$linkcolor=strip_tags($this->input->post('linkcolor'));
+			$headercolor=strip_tags($this->input->post('headercolor'));
 
-			$sql = "UPDATE businesses SET cat_id = :cat_id,description = :description, website = :url, company_email = :email, address = :address, tel = :tel WHERE user_id = :user_id AND business_id = :business_id";
+			$sql = "UPDATE businesses SET cat_id = :cat_id,description = :description, website = :url, company_email = :email, address = :address, tel = :tel, bgcolor = :bgcolor, headercolor = :headercolor, linkcolor = :linkcolor WHERE user_id = :user_id AND business_id = :business_id";
 			$stmt = $this->db->conn_id->prepare($sql);
 			$stmt->bindParam(':business_id', $business_id);
 			$stmt->bindParam(':user_id', $user_id);
@@ -120,6 +123,9 @@ class User_model extends CI_Model {
 			$stmt->bindParam(':email', $email);
 			$stmt->bindParam(':address', $address);
 			$stmt->bindParam(':tel', $tel);
+			$stmt->bindParam(':bgcolor', $bgcolor);
+			$stmt->bindParam(':headercolor', $headercolor);
+			$stmt->bindParam(':linkcolor', $linkcolor);
 			$stmt->execute();
 
 			//return "Details Updated";
@@ -299,8 +305,8 @@ class User_model extends CI_Model {
 				'source_image' => $image_data['full_path'],
 				'new_image' => $this->gallery_path . '/covers/'.$thumbname.$image_data['file_ext'],
 				'maintain_ratio' => true,
-				'width' => 1170,
-				'height' => 250,
+				'width' => 2000,
+				'height' => 1800,
 				'create_thumb' => true,
 				'master_dim' => 'height',
 				'thumb_marker' => ''

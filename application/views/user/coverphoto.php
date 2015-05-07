@@ -5,7 +5,7 @@
 
         <?php echo form_open_multipart('user/upload_coverphoto/'.$business['business_id']); ?>
 	        <div class="form-group">
-			    <label for="exampleInputFile">Select Logo</label>
+			    <label for="exampleInputFile">Select photo</label>
 			    <input type="file" id="userfile" name="userfile">
 			</div>
 			
@@ -13,7 +13,8 @@
 			$upload = array(
               'name'        => 'upload',
               'class' 		=> 'btn btn-primary',
-              'id'          => 'uploadbtn'
+              'id'          => 'uploadbtn',
+              'accept'		=>	'image/gif, image/png, image/jpeg, image/jpg'
             );
 			echo form_submit($upload, 'Upload Image');
 			?>

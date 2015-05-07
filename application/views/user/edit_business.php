@@ -5,7 +5,7 @@
 <div class="col-xs-12 col-sm-9 col-md-8 col-lg-9 content-area">
 <h1><?php echo $business['business_name']; ?> <small>Edit Business</small></h1>
 <div class="well well-sm">
-	<p><strong>Website Link:</strong> <a href="<?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?>"><?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?></a></p>
+	<p><strong>Website Link:</strong> <a target="_blank" href="<?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?>"><?php echo base_url(); ?>index.php/b/<?php echo $strippedurl; ?></a></p>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-10 col-md-offset-1">
@@ -44,18 +44,7 @@
 		    		<a href="<?php echo base_url(); ?>index.php/user/update_coverphoto/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Edit Header</a>
 	    		</div>
 	    	</div>
-	    	<hr>
-	    	<div class="row">	
-				<div class="col-xs-12">
-					<strong>Colour Scheme</strong>
-				</div>
-				<div class="col-xs-12">
-					Menu Colour:
-		    	</div>
-		    	<div class="col-xs-12">
-		    		<a href="<?php echo base_url(); ?>index.php/user/update_companylogo/<?php echo $business['business_id']; ?>" class="btn btn-primary btn-xs clear-fix profile-pic-btn"><span class="glyphicon glyphicon-picture"></span> Save Colours</a>
-	    		</div>
-	    	</div>
+	    
 		</div>
 
     	<?php echo form_open('user/update_business/'.$business['business_id']); ?>
@@ -173,6 +162,62 @@
 					?>
 				</div>
 
+				<h4>Profile Colours</h4>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="businessname">Links</label>
+						    <?php
+							    $data = array(
+					              'name'        => 'linkcolor',
+					              'id'          => 'linkcolor',
+					              'value'       => 	$business['linkcolor'],
+					              'maxlength'   => '7',
+					              'class'       => 'form-control ',
+					              'type'	=> 'color'
+					            );
+
+								echo form_input($data);
+							?>
+						</div>
+					</div>
+					<div class="col-md-4">	
+						<div class="form-group">
+							<label for="businessname">Background</label>
+						    <?php
+							    $data = array(
+					              'name'        => 'bgcolor',
+					              'id'          => 'bgcolor',
+					              'value'       => 	$business['bgcolor'],
+					              'maxlength'   => '7',
+					              'class'       => 'form-control ',
+					              'type'	=> 'color'
+					            );
+
+								echo form_input($data);
+							?>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="businessname">Header Text</label>
+						    <?php
+							    $data = array(
+					              'name'        => 'headercolor',
+					              'id'          => 'headercolor',
+					              'value'       => 	$business['headercolor'],
+					              'maxlength'   => '7',
+					              'class'       => 'form-control ',
+					              'type'	=> 'color'
+					            );
+
+								echo form_input($data);
+							?>
+						</div>
+					</div>
+				</div>
+
 				<button type="submit" id="edit_business_btn" class="btn btn-default btn-success">Update</button></form> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete Business</button>
 				<br>
 			</div>
@@ -200,4 +245,7 @@
 </div>
 
 <?php } ?>
+
+<link rel="stylesheet" media="screen" type="text/css" href="<?php echo base_url(); ?>css/colorpicker.css" />
+<script type="text/javascript" src="<?php echo base_url(); ?>js/colorpicker.js"></script>
 
