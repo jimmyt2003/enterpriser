@@ -15,12 +15,22 @@ html, body{
 	background: url("<?php echo $coverurl ?>");
 	background-size: cover;
 	background-repeat: no-repeat;
-	color:  <?php echo $business['headercolor']; ?> !important;
+	color:  #<?php echo $business_item['headercolor']; ?> !important;
+}
+.jumbobg h1{
+	color:  #<?php echo $business_item['headercolor']; ?> !important;
 }
 </style>
         
         	<div class="jumbotron jumbobg">
-        		<h1><?php echo $business_item['business_name']; ?><h1>
+        		<div class="row">
+					<div class="col-xs-3">
+						<img src="<?php echo $logourl; ?>" class="img-responsive"/>
+					</div>
+					<div class="col-xs-9">
+						<h1><?php echo $business_item['business_name']; ?></h1>
+					</div>
+				</div>
         	</div>
             <a href="<?php echo base_url(); ?>index.php/directory/cat/<?php echo $business_item['business_id']; ?>"><?php echo $business_item['business_name']; ?></a>
         </div>

@@ -196,7 +196,16 @@ h1, h2, h3, h4, h5{
 
 /* business profile */
 .jumbobg{
-	filter: blur(5px);
+	 -webkit-filter: blur(10px);
+	 -webkit-filter: brightness(85%);
+	h1, img{
+		-webkit-filter: blur(0px);
+	 	-webkit-filter: brightness(100%);
+	}
+	img{
+		max-height: 150px;
+		max-width: 150px;
+	}
 }
 
 /*media queries*/

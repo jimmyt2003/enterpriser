@@ -153,6 +153,17 @@ h1, h2, h3, h4, h5 {
 .form-border-left {
   border-left: 1px solid #eee; }
 
+/* business profile */
+.jumbobg {
+  -webkit-filter: blur(10px);
+  -webkit-filter: brightness(85%); }
+  .jumbobg h1, .jumbobg img {
+    -webkit-filter: blur(0px);
+    -webkit-filter: brightness(100%); }
+  .jumbobg img {
+    max-height: 150px;
+    max-width: 150px; }
+
 /*media queries*/
 @media screen and (max-width: 700px) {
   .full-screen-splash {
