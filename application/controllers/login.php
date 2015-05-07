@@ -77,24 +77,6 @@ class Login extends CI_Controller {
 
 	}
 
-	public function home()
-	{
-		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
-
-		$data['destinations']=$this->login_model->get_destinations();
-		$this->load->view('user/header', $data);
-		if($this->login_model->firstlogin())
-		{
-			$this->load->view('user/profilepic');
-		}else{
-			$data['holidays']=$this->login_model->myholidays();
-			$data['profile']=$this->login_model->profile();
-			//$data['holidays']=$this->login_model->myholidays();
-			$this->load->view("user/home", $data);
-		}
-		$this->load->view('footer');
-	}
-
 	public function thankyou()
 	{
 		$data['loginerror']="no error";
@@ -118,7 +100,7 @@ class Login extends CI_Controller {
 	{	
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
 		$this->form_validation->set_rules('firstname', 'First Name', 'required|xss_clean|max_length[30]');
-		$this->form_validation->set_rules('surname', 'First Name', 'required|xss_clean|max_length[30]');
+		$this->form_validation->set_rules('surname', 'Surname', 'required|xss_clean|max_length[30]');
 		$this->form_validation->set_rules('email', 'Email Address', 'required|xss_clean|callback_email_check|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'required|max_length[20]|matches[passwordconfirm]');
 		$this->form_validation->set_rules('passwordconfirm', 'Confirm Password', 'required');

@@ -45,6 +45,7 @@ $route['b/(:any)'] = "bus/business/$1";
 $route['directory'] = "businessdirectory";
 $route['directory/(:any)'] = "businessdirectory/cat/$1";
 $route['p/(:any)'] = "businessdirectory/business/$1";
+$route['search/(:any)'] = "businessdirectory/search/$1";
 
 
 /* End of file routes.php */

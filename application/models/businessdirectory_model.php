@@ -73,4 +73,38 @@ class Businessdirectory_model extends CI_Model {
 		return $data;
 	}
 
+	public function search_count($searchterm)
+	{
+		$searchterm="%".$searchterm."%";
+		$sql = "SELECT * FROM businesses WHERE title LIKE :searchterm AND approved = '1'";
+		$stmt = $this->db->conn_id->prepare($sql);
+		$stmt->bindParam(':searchterm', $searchterm);
+		$stmt->execute();
+		$count = $stmt->rowCount();
+		RETURN $count;
+
+	}
+
+	public function search_businesses($searchterm, $limit, $offset)
+	{
+		$searchterm="%".$searchterm."%";
+		//$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.user_id = businesses.user_id WHERE id = :id AND approved = '1'";
+		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags ORDER BY business_name ASC LIMIT $limit OFFSET $offset";
+		$stmt = $this->db->conn_id->prepare($sql);
+		$stmt->bindParam(':searchterm', $searchterm);
+		$stmt->bindParam(':tags', $searchterm);
+		//$stmt->bindParam(':offset', $offset);
+		$stmt->execute();
+
+		$data = array();
+
+		foreach($stmt as $row)
+		{
+			$data[] = array('business_id' => $row['business_id'],'user_id' => $row['user_id'],'business_name' => $row['business_name'],'description' => $row['description'],'website' => $row['website'],'logo' => $row['logo'],'company_email' => $row['company_email'],'address' => $row['address'],'tel' => $row['tel'],'linkcolor' => $row['linkcolor'],'headercolor' => $row['headercolor'],'bgcolor' => $row['bgcolor'],'coverphoto' => $row['coverphoto'],'cat_name' => $row['cat_name']);
+		}
+
+		return $data;
+
+	}
+
 }

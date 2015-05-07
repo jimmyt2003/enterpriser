@@ -44,15 +44,15 @@ html, body{
         			<h4>Phone Number</h4>
         			<p><?php echo $business_item['tel']; ?></p>
         		</div>
-        	
-        		<h2>Service Swap Opportunities</h2>
-        		<div class="col-md-6">
+        	</div>
+        	<div class="row">
+        		<div class="col-md-11">
         			<h4>Services Required</h4>
-        			<p><?php echo $business_item['description']; ?></p>
+        			<p>Coming Soon</p>
         		</div>
-        		<div class="col-md-6 well well-sm">
+        		<div class="col-md-11">
         			<h4>Services On Offer</h4>
-        			<p><?php echo $business_item['description']; ?></p>
+        			<p>Coming Soon</p>
         			
         		</div>
         	</div>
