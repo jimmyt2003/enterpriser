@@ -205,47 +205,6 @@ class Login extends CI_Controller {
 		redirect('', 'location');
 	}
 
-	public function holidays()
-	{
-		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
-
-		$data['destinations']=$this->login_model->get_destinations();
-		$this->load->view("user/header", $data);
-
-		if($this->login_model->holidayno()==0)
-			{
-				$data['destinations']=$this->login_model->get_destinations();
-				$this->load->view("user/add_holiday", $data);
-			}
-		$this->load->view("footer");
-	}
-
-	public function add_holiday()
-	{	
-		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
-
-		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		$this->form_validation->set_rules('destination', 'Destination', 'required|xss_clean');
-		$this->form_validation->set_rules('arrivaldate', 'Arrival Date', 'required|callback_date_check');
-		$this->form_validation->set_rules('returndate', 'Return Date', 'required|callback_date_check');
-		$this->form_validation->set_rules('description', 'Description', 'required|xss_clean');
-
-		if($this->form_validation->run() == TRUE)
-		{
-		
-			$this->login_model->insert_holiday();
-			//echo "right";
-			redirect('/holidays/latest/', 'refresh');
-		}else{
-			//echo "wrong";
-			$data['destinations']=$this->login_model->get_destinations();
-			$this->load->view("user/header", $data);
-			$this->load->view("user/add_holiday", $data);
-			$this->load->view("footer");
-		}
-
-	}
-
 	public function add_profilepic()
 	{
 		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
@@ -274,17 +233,6 @@ class Login extends CI_Controller {
 			$this->load->view("user/profilepic");
 			$this->load->view("footer");	
 	}
-
-
-	public function myholidays()
-	{
-		if($this->session->userdata('user_id') == FALSE){ redirect('user/login', 'location');}
-		$data['holidays']=$this->login_model->myholidays();
-		$data['destinations']=$this->login_model->get_destinations(); $data['destinations']=$this->login_model->get_destinations(); $this->load->view('user/header', $data);
-		$this->load->view("holidays", $data);
-		$this->load->view('footer');
-	}
-
 
 	
 }
