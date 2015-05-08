@@ -9,7 +9,7 @@
 ?>
 <div class="col-xs-12 col-sm-9 col-md-8 col-lg-9 content-area">
 
-	<h1>Search Results: <small><?php echo $query; ?></small></h1>
+	<h1>Service Swap Search: <small><?php echo $query; ?></small></h1>
 	<div class="row clearfix">
 		<?php if($num_results>0){ ?><br><p class="clearfix"><em><?php echo $num_results; ?> Results found</em></p><?php } ?>
 	</div>

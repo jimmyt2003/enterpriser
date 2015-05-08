@@ -76,10 +76,11 @@ class Businessdirectory_model extends CI_Model {
 	public function search_count($searchterm)
 	{
 		$searchterm="%".$searchterm."%";
-		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags";
+		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags OR description LIKE :description";
 		$stmt = $this->db->conn_id->prepare($sql);
 		$stmt->bindParam(':searchterm', $searchterm);
 		$stmt->bindParam(':tags', $searchterm);
+		$stmt->bindParam(':description', $searchterm);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 		RETURN $count;
@@ -90,10 +91,11 @@ class Businessdirectory_model extends CI_Model {
 	{
 		$searchterm="%".$searchterm."%";
 		//$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.user_id = businesses.user_id WHERE id = :id AND approved = '1'";
-		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags ORDER BY business_name ASC LIMIT $limit OFFSET $offset";
+		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags OR description LIKE :description ORDER BY business_name ASC LIMIT $limit OFFSET $offset";
 		$stmt = $this->db->conn_id->prepare($sql);
 		$stmt->bindParam(':searchterm', $searchterm);
 		$stmt->bindParam(':tags', $searchterm);
+		$stmt->bindParam(':description', $searchterm);
 		//$stmt->bindParam(':offset', $offset);
 		$stmt->execute();
 

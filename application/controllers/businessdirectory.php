@@ -66,17 +66,28 @@ class Businessdirectory extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = $this->config->base_url().'search/'.$searchterm;
 		$config['total_rows'] = $this->businessdirectory_model->search_count($searchterm);
-		$config['per_page'] = 2; 
+		$config['per_page'] = 6; 
 		$config['next_link'] = 'Next &gt;';
 		$config['prev_link'] = '&lt; Back';
+		//$config['anchor_class'] = 'btn';
 		//$config['uri_segment'] =3;
 		$this->pagination->initialize($config); 
-		$data['businesses']=$this->businessdirectory_model->search_businesses($searchterm, 2, $offset);
+		$data['businesses']=$this->businessdirectory_model->search_businesses($searchterm, 6, $offset);
 		$data['query']=$searchterm;
+		$data['num_results'] = $this->businessdirectory_model->search_count($searchterm);
 
 		$this->load->view("header");
 		$this->load->view("sidebar", $data);
 		$this->load->view("display_businesses", $data);
+		$this->load->view("footer");
+	}
+
+	public function service_swap()
+	{
+		$data="";
+		$this->load->view("header");
+		$this->load->view("sidebar", $data);
+		$this->load->view("service_search", $data);
 		$this->load->view("footer");
 	}
 	

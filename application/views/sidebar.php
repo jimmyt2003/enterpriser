@@ -35,7 +35,7 @@
     </ul>
 <?php } ?>
 
-<?php if($this->uri->segment(1)=="directory" || $this->uri->segment(1)=="search"){ ?>
+
 	<h4>Find a business</h4>
 	<?php echo form_open('search'); 
 	if(!isset($query)){ $query = ""; } ?>
@@ -56,6 +56,6 @@
 		?>
 		</div>
 	</form>
-<?php } ?>
+
 
 </div>

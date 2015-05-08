@@ -27,8 +27,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#serviceswap"><span class="glyphicon glyphicon-transfer"></span> Service Swap</a></li>
-            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Office Space" data-placement="bottom"><span class="glyphicon glyphicon-print"></span> Office Space</a></li>
+            <li><a href="<?php echo base_url(); ?>service_swap"><span class="glyphicon glyphicon-transfer"></span> Service Swap</a></li>
+            <li><a href="#" data-toggle="tooltip" title="" data-original-title="Coming Soon!" data-placement="bottom"><span class="glyphicon glyphicon-print"></span> Office Space</a></li>
             <li><a href="<?php echo base_url(); ?>directory"><span class="glyphicon glyphicon-list-alt"></span> Company Directory</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

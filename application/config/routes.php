@@ -46,6 +46,9 @@ $route['directory'] = "businessdirectory";
 $route['directory/(:any)'] = "businessdirectory/cat/$1";
 $route['p/(:any)'] = "businessdirectory/business/$1";
 $route['search/(:any)'] = "businessdirectory/search/$1";
+$route['search'] = "businessdirectory/search_redirect";
+//services
+$route['service_swap'] = "businessdirectory/service_swap";
 
 
 /* End of file routes.php */

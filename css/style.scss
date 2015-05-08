@@ -196,22 +196,53 @@ h1, h2, h3, h4, h5{
 
 /* business profile */
 .jumbobg{
-	 -webkit-filter: blur(10px);
-	 -webkit-filter: brightness(85%);
-	h1, img{
-		-webkit-filter: blur(0px);
-	 	-webkit-filter: brightness(100%);
-	}
-	img{
-		max-height: 150px;
-		max-width: 150px;
-	}
+  position: relative;
 }
+.jumbobg:before {
+  content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+  -webkit-filter: blur(40px);
+  -webkit-filter: brightness(55%);
+}
+  .jumbobg h1, .jumbobg img {
+    color: white;
+    text-shadow: 1px 1px 8px rgba(150, 150, 150, 0.7);
+  }
+  .jumbobg img {
+    max-height: 150px;
+    max-width: 150px;
+  }
+
+.headerbg{
+  position: relative;
+}
+.headerbg:before {
+  content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+  -webkit-filter: blur(40px);
+  -webkit-filter: brightness(85%);
+}
+  .headerbg h1, .headerbg img {
+    text-shadow: 1px 1px 8px rgba(150, 150, 150, 0.7);
+  }
+  .headerbg img {
+    max-height: 150px;
+    max-width: 150px;
+  }
 
 /* search */
 .media{
 	margin: 15px;
 	padding: 10px;
+	vertical-align:top;
 }
 .media-object{
 	max-width:50px;
