@@ -76,9 +76,10 @@ class Businessdirectory_model extends CI_Model {
 	public function search_count($searchterm)
 	{
 		$searchterm="%".$searchterm."%";
-		$sql = "SELECT * FROM businesses WHERE title LIKE :searchterm AND approved = '1'";
+		$sql = "SELECT * FROM businesses INNER JOIN categories ON categories.cat_id = businesses.cat_id WHERE business_name LIKE :searchterm OR cat_name LIKE :tags";
 		$stmt = $this->db->conn_id->prepare($sql);
 		$stmt->bindParam(':searchterm', $searchterm);
+		$stmt->bindParam(':tags', $searchterm);
 		$stmt->execute();
 		$count = $stmt->rowCount();
 		RETURN $count;

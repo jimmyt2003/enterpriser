@@ -47,17 +47,13 @@ class Businessdirectory extends CI_Controller {
 		$this->form_validation->set_rules('search', 'Search Term', 'trim|required|min_length[1]|max_length[50]|xss_clean');
 		if ($this->form_validation->run() == FALSE)
 		{
-			
+			redirect('search', 'location');
 		}
 		else
 		{
 			//$this->load->helper('url');
 			$searchterm = $this->input->post('search');
 			$searchterm=strip_tags($searchterm);
-			if($searchterm!=""||$searchterm!=" ")
-			{
-			$this->businessdirectory_model->add_search_term($searchterm);
-			}
 			redirect('search/'.$searchterm, 'location');
 		}					
 	}
@@ -70,14 +66,15 @@ class Businessdirectory extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = $this->config->base_url().'search/'.$searchterm;
 		$config['total_rows'] = $this->businessdirectory_model->search_count($searchterm);
-		$config['per_page'] = 24; 
+		$config['per_page'] = 2; 
 		$config['next_link'] = 'Next &gt;';
 		$config['prev_link'] = '&lt; Back';
-		$config['uri_segment'] =2;
+		//$config['uri_segment'] =3;
 		$this->pagination->initialize($config); 
-		$data['businesses']=$this->businessdirectory_model->search_businesses($searchterm, 24, $offset);
+		$data['businesses']=$this->businessdirectory_model->search_businesses($searchterm, 2, $offset);
 		$data['query']=$searchterm;
 
+		$this->load->view("header");
 		$this->load->view("sidebar", $data);
 		$this->load->view("display_businesses", $data);
 		$this->load->view("footer");
