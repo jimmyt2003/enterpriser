@@ -55,28 +55,7 @@ class Login extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function add_user_info()
-	{	
-		
-		$this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
-		$this->form_validation->set_rules('gender', 'Gender', 'required');
-
-		if($this->form_validation->run() == TRUE)
-		{
-		
-			$this->login_model->insert_user_info();
-			//echo "right";
-			redirect('/user/home/', 'refresh');
-		}else{
-			//echo "wrong";
-			$data['destinations']=$this->login_model->get_destinations();
-			$this->load->view('user/header', $data);
-			$this->load->view("user/first_edit_profile");
-			$this->load->view('footer');
-		}
-
-	}
-
+	
 	public function thankyou()
 	{
 		$data['loginerror']="no error";
