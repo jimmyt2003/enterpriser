@@ -41,7 +41,7 @@ class Login extends CI_Controller {
 
 	public function edit_profile()
 	{
-		$data['destinations']=$this->login_model->get_destinations();
+		
 		$this->load->view('user/header', $data);
 		$this->load->view("user/edit_profile");
 		$this->load->view('footer');
@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 
 	public function first_edit_profile()
 	{
-		$data['destinations']=$this->login_model->get_destinations();
+		
 		$this->load->view('user/header', $data);
 		$this->load->view("user/first_edit_profile");
 		$this->load->view('footer');
